@@ -1,4 +1,4 @@
-# 🐻 Calebear
+# Calebear
 
 Everything starts with a date.
 
