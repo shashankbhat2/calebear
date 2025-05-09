@@ -129,7 +129,8 @@ exports.Prisma.UserScalarFieldEnum = {
   picture: 'picture',
   googleId: 'googleId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 };
 
 exports.Prisma.IntegrationScalarFieldEnum = {
@@ -170,6 +171,12 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.Role = exports.$Enums.Role = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN'
+};
+
 exports.IntegrationType = exports.$Enums.IntegrationType = {
   GOOGLE_CALENDAR: 'GOOGLE_CALENDAR'
 };

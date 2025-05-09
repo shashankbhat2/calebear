@@ -34,11 +34,24 @@ export namespace $Enums {
 
 export type IntegrationType = (typeof IntegrationType)[keyof typeof IntegrationType]
 
+
+export const Role: {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
 }
 
 export type IntegrationType = $Enums.IntegrationType
 
 export const IntegrationType: typeof $Enums.IntegrationType
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1026,6 +1039,7 @@ export namespace Prisma {
     googleId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1038,6 +1052,7 @@ export namespace Prisma {
     googleId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1050,6 +1065,7 @@ export namespace Prisma {
     googleId: number
     createdAt: number
     updatedAt: number
+    role: number
     _all: number
   }
 
@@ -1064,6 +1080,7 @@ export namespace Prisma {
     googleId?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1076,6 +1093,7 @@ export namespace Prisma {
     googleId?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1088,6 +1106,7 @@ export namespace Prisma {
     googleId?: true
     createdAt?: true
     updatedAt?: true
+    role?: true
     _all?: true
   }
 
@@ -1173,6 +1192,7 @@ export namespace Prisma {
     googleId: string | null
     createdAt: Date
     updatedAt: Date
+    role: $Enums.Role
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1202,6 +1222,7 @@ export namespace Prisma {
     googleId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
     integrations?: boolean | User$integrationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1216,6 +1237,7 @@ export namespace Prisma {
     googleId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1228,6 +1250,7 @@ export namespace Prisma {
     googleId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1240,9 +1263,10 @@ export namespace Prisma {
     googleId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "picture" | "googleId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "picture" | "googleId" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     integrations?: boolean | User$integrationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1265,6 +1289,7 @@ export namespace Prisma {
       googleId: string | null
       createdAt: Date
       updatedAt: Date
+      role: $Enums.Role
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1698,6 +1723,7 @@ export namespace Prisma {
     readonly googleId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'Role'>
   }
     
 
@@ -3270,7 +3296,8 @@ export namespace Prisma {
     picture: 'picture',
     googleId: 'googleId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    role: 'role'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -3367,6 +3394,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'IntegrationType'
    */
   export type EnumIntegrationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IntegrationType'>
@@ -3424,6 +3465,7 @@ export namespace Prisma {
     googleId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     integrations?: IntegrationListRelationFilter
   }
 
@@ -3437,6 +3479,7 @@ export namespace Prisma {
     googleId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
     integrations?: IntegrationOrderByRelationAggregateInput
   }
 
@@ -3453,6 +3496,7 @@ export namespace Prisma {
     picture?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     integrations?: IntegrationListRelationFilter
   }, "id" | "email" | "googleId">
 
@@ -3466,6 +3510,7 @@ export namespace Prisma {
     googleId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -3484,6 +3529,7 @@ export namespace Prisma {
     googleId?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
   export type IntegrationWhereInput = {
@@ -3577,6 +3623,7 @@ export namespace Prisma {
     googleId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.Role
     integrations?: IntegrationCreateNestedManyWithoutUserInput
   }
 
@@ -3590,6 +3637,7 @@ export namespace Prisma {
     googleId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.Role
     integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -3603,6 +3651,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUpdateManyWithoutUserNestedInput
   }
 
@@ -3616,6 +3665,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -3629,6 +3679,7 @@ export namespace Prisma {
     googleId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.Role
   }
 
   export type UserUpdateManyMutationInput = {
@@ -3641,6 +3692,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -3653,6 +3705,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type IntegrationCreateInput = {
@@ -3786,6 +3839,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type IntegrationListRelationFilter = {
     every?: IntegrationWhereInput
     some?: IntegrationWhereInput
@@ -3811,6 +3871,7 @@ export namespace Prisma {
     googleId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -3823,6 +3884,7 @@ export namespace Prisma {
     googleId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -3835,6 +3897,7 @@ export namespace Prisma {
     googleId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    role?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3885,6 +3948,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type EnumIntegrationTypeFilter<$PrismaModel = never> = {
@@ -4051,6 +4124,10 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type IntegrationUpdateManyWithoutUserNestedInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
@@ -4140,6 +4217,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4208,6 +4292,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type NestedEnumIntegrationTypeFilter<$PrismaModel = never> = {
@@ -4351,6 +4445,7 @@ export namespace Prisma {
     googleId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.Role
   }
 
   export type UserUncheckedCreateWithoutIntegrationsInput = {
@@ -4363,6 +4458,7 @@ export namespace Prisma {
     googleId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    role?: $Enums.Role
   }
 
   export type UserCreateOrConnectWithoutIntegrationsInput = {
@@ -4391,6 +4487,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateWithoutIntegrationsInput = {
@@ -4403,6 +4500,7 @@ export namespace Prisma {
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type IntegrationCreateManyUserInput = {

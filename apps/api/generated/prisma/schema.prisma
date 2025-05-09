@@ -19,6 +19,12 @@ enum IntegrationType {
   // OUTLOOK_CALENDAR // Future integrations
 }
 
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
 model User {
   id        String  @id @default(cuid())
   email     String  @unique
@@ -32,6 +38,8 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  role Role @default(USER)
 
   @@map("users") // Optional: specify table name in the database
 }
