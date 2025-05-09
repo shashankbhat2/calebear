@@ -14,6 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum IntegrationType {
+  GOOGLE_CALENDAR
+  // OUTLOOK_CALENDAR // Future integrations
+}
+
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
@@ -23,9 +28,30 @@ model User {
   picture   String?  // URL to profile picture
   googleId  String?  @unique // To store Google user ID
 
+  integrations Integration[] // Relation to Integrations
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("users") // Optional: specify table name in the database
+}
+
+model Integration {
+  id            String          @id @default(cuid())
+  userId        String
+  type          IntegrationType
+  accessToken   String          @db.Text // Access tokens can be long
+  refreshToken  String?         @db.Text // Refresh tokens can also be long and are optional for some OAuth flows
+  lastSync      DateTime?
+  externalId    String?         @unique // e.g., Google Calendar ID, subscription ID for webhooks
+  metadata      Json?           // For any other integration-specific data
+
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([userId, type]) // A user can have only one integration of a certain type
+  @@index([userId])
 }
 

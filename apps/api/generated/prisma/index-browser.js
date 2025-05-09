@@ -132,9 +132,27 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.IntegrationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  lastSync: 'lastSync',
+  externalId: 'externalId',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -147,9 +165,18 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.IntegrationType = exports.$Enums.IntegrationType = {
+  GOOGLE_CALENDAR: 'GOOGLE_CALENDAR'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Integration: 'Integration'
 };
 
 /**
