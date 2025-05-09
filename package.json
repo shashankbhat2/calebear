@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently -k -n BACKEND,FRONTEND,ASTRO -c green,cyan,yellow \"pnpm --filter api run dev\" \"pnpm --filter web run dev\" \"pnpm --filter sites run dev\"",
+    "build": "pnpm -r --parallel run build",
+    "dev:api": "pnpm --filter api run dev",
+    "dev:web": "pnpm --filter web run dev",
+    "dev:sites": "pnpm --filter sites run dev",
+    "dev:web-api": "concurrently -k -n BACKEND,FRONTEND -c green,cyan \"pnpm --filter api run dev\" \"pnpm --filter web run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
