@@ -1,69 +1,106 @@
-import { Controller, Post, UseGuards, Request, Get, Res, Body, HttpStatus, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Get, Res, Body, UsePipes, ValidationPipe, HttpStatus, ConflictException, InternalServerErrorException, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { GoogleOAuthGuard } from './guards/google-oauth.guard';
-import { UserService } from '../user/user.service'; // For user creation (signup)
-import { CreateUserDto } from './dto/create-user.dto'; // Import CreateUserDto
-import { LoginUserDto } from './dto/login-user.dto';   // Import LoginUserDto
-// Create DTOs for signup and login for better validation and structure
+import { UserService } from '../user/user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiBearerAuth, ApiOkResponse, ApiCreatedResponse, ApiUnauthorizedResponse, ApiConflictResponse, ApiInternalServerErrorResponse } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
+// Define a type for successful login response for Swagger
+class LoginSuccessResponse {
+  @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })
+  access_token: string;
+  @ApiProperty() // You might want to define a UserResponseDto without password for this
+  user: any; // Replace 'any' with a proper User DTO if available
+}
+
+// Define a type for successful signup response for Swagger
+class SignupSuccessResponse {
+  @ApiProperty({ example: 'User created successfully' })
+  message: string;
+  @ApiProperty() // You might want to define a UserResponseDto without password for this
+  user: any; // Replace 'any' with a proper User DTO if available
+}
+
+// Define a type for Google OAuth callback response
+class GoogleAuthCallbackResponse {
+  @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })
+  access_token: string;
+}
+
+@ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(
     private authService: AuthService,
-    private userService: UserService, // Inject UserService for signup
+    private userService: UserService,
   ) {}
 
-  // Optional: Add a signup route
   @Post('signup')
-  @UsePipes(new ValidationPipe({ transform: true, whitelist: true })) // Apply validation pipe
-  async signup(@Body() createUserDto: CreateUserDto) {
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Register a new user' })
+  @ApiCreatedResponse({ description: 'User created successfully.', type: SignupSuccessResponse })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Invalid input data. (Validation errors)' })
+  @ApiConflictResponse({ description: 'Email already exists.' })
+  @ApiInternalServerErrorResponse({ description: 'Could not create user due to an internal error.' })
+  @ApiBody({ type: CreateUserDto })
+  async signup(@Body() createUserDto: CreateUserDto): Promise<SignupSuccessResponse> {
     try {
-      // DTO now ensures email and password (and their formats) are present if not optional
       const user = await this.userService.createUser(createUserDto);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...result } = user; 
-      return { statusCode: HttpStatus.CREATED, message: 'User created successfully', user: result };
+      const { password, ...result } = user;
+      return { message: 'User created successfully', user: result }; 
     } catch (error) {
-      if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
-        return { statusCode: HttpStatus.CONFLICT, message: 'Email already exists.' };
+      if (error instanceof ConflictException || error instanceof InternalServerErrorException) {
+        throw error; // Re-throw known exceptions
       }
-      // Consider more specific error handling or a generic error filter
-      console.error("Signup Error:", error); 
-      return { statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message || 'Could not create user.' };
+      if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
+        throw new ConflictException('Email already exists.');
+      }
+      console.error("Signup Error:", error);
+      throw new InternalServerErrorException(error.message || 'Could not create user.');
     }
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
-  @UsePipes(new ValidationPipe({ transform: true, whitelist: true })) // Apply validation pipe for payload structure
-  async login(@Request() req, @Body() loginUserDto: LoginUserDto) { // loginUserDto for payload validation
-    // LocalAuthGuard and LocalStrategy handle the actual authentication
-    // req.user is populated by LocalStrategy upon successful validation
+  @UseGuards(LocalAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Log in an existing user' })
+  @ApiOkResponse({ description: 'Login successful, returns JWT and user info.', type: LoginSuccessResponse })
+  @ApiUnauthorizedResponse({ description: 'Invalid credentials.' })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Invalid input data. (Validation errors for email/password format)' })
+  @ApiBody({ type: LoginUserDto })
+  async login(@Request() req, @Body() loginUserDto: LoginUserDto): Promise<LoginSuccessResponse> {
     return this.authService.login(req.user);
   }
 
   @Get('google')
   @UseGuards(GoogleOAuthGuard)
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  async googleAuth(@Request() _req) {
-    // Initiates the Google OAuth2 login flow
-    // Passport handles the redirect
-  }
+  @ApiOperation({ summary: 'Initiate Google OAuth2 login flow' })
+  @ApiResponse({ status: 302, description: 'Redirects to Google for authentication.' })
+  async googleAuth(@Request() _req) {}
 
   @Get('google/callback')
   @UseGuards(GoogleOAuthGuard)
-  async googleAuthRedirect(@Request() req, @Res() res) {
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Google OAuth2 callback URL' })
+  @ApiOkResponse({ description: 'Google login successful, returns JWT.', type: GoogleAuthCallbackResponse })
+  @ApiUnauthorizedResponse({ description: 'Google authentication failed.' })
+  async googleAuthRedirect(@Request() req, @Res({ passthrough: true }) res): Promise<GoogleAuthCallbackResponse> {
     const jwt = await this.authService.validateOAuthLogin(req.user, 'google');
-    // Redirect to a frontend URL with the JWT, or return it directly
-    // Example: res.redirect(`http://localhost:3001/auth/callback?token=${jwt}`); // Assuming frontend on port 3001
-    return res.json({ access_token: jwt });
+    return { access_token: jwt };
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('profile')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Get current authenticated user profile' })
+  @ApiBearerAuth() 
+  @ApiOkResponse({ description: 'Returns the authenticated user profile.' }) // Define a UserProfileResponse DTO for better schema
+  @ApiUnauthorizedResponse({ description: 'Unauthorized. Invalid or missing token.' })
   getProfile(@Request() req) {
-    return req.user; // User object attached by JwtStrategy.validate
+    return req.user;
   }
 }

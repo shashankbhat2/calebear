@@ -13,7 +13,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
 @Module({
   imports: [
     UserModule, // Add UserModule here
-    PassportModule,
+    PassportModule.register({ session: false }), // Explicitly disable sessions for Passport
     JwtModule.registerAsync({
       // If using @nestjs/config for environment variables:
       // imports: [ConfigModule],
