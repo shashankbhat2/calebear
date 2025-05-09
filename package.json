@@ -7,7 +7,18 @@
     "dev:api": "pnpm --filter api run dev",
     "dev:web": "pnpm --filter web run dev",
     "dev:sites": "pnpm --filter sites run dev",
-    "dev:web-api": "concurrently -k -n BACKEND,FRONTEND -c green,cyan \"pnpm --filter api run dev\" \"pnpm --filter web run dev\""
+    "dev:web-api": "concurrently -k -n BACKEND,FRONTEND -c green,cyan \"pnpm --filter api run dev\" \"pnpm --filter web run dev\"",
+    "start": "pnpm --filter api start",
+    "lint": "pnpm --filter api lint",
+    "format": "pnpm --filter api format",
+    "test": "pnpm --filter api test",
+    "db:up": "docker-compose up -d postgres",
+    "db:down": "docker-compose down",
+    "db:rm-data": "docker-compose down -v",
+    "db:restart": "npm run db:down && npm run db:up",
+    "prisma:migrate:dev": "pnpm --filter api exec prisma migrate dev",
+    "prisma:generate": "pnpm --filter api exec prisma generate",
+    "dev:db:reset": "npm run db:rm-data && npm run db:up && echo \"Waiting for DB to be ready...\" && sleep 5 && npm run prisma:migrate:dev && npm run prisma:generate"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
