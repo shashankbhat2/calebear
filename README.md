@@ -1,8 +1,8 @@
-# Calebear
+# Clevercal
 
 Everything starts with a date.
 
-**Calebear** is a lightweight, self-hostable scheduling & booking platform designed for coaches, therapists, teachers, freelancers and other solopreneurs.
+**Clevercal** is a lightweight, self-hostable scheduling & booking platform designed for coaches, therapists, teachers, freelancers and other solopreneurs.
 Spin up elegant booking pages, sync events to your calendar, collect payments and keep client notes—all from one open-source monorepo.
 
 ---

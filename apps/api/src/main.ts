@@ -15,8 +15,8 @@ async function bootstrap() {
 
   // Swagger (OpenAPI) Setup
   const config = new DocumentBuilder()
-    .setTitle('Calebear API')
-    .setDescription('The official API for Calebear services')
+    .setTitle('Clevercal API')
+    .setDescription('The official API for Clevercal services')
     .setVersion('1.0')
     // .addTag('auth') // Example: Add a tag for grouping endpoints
     // .addTag('users') // Example: Add another tag
