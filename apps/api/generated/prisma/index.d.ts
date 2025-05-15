@@ -23,6 +23,16 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type Integration = $Result.DefaultSelection<Prisma.$IntegrationPayload>
+/**
+ * Model UserPersona
+ * 
+ */
+export type UserPersona = $Result.DefaultSelection<Prisma.$UserPersonaPayload>
+/**
+ * Model UserOnboarding
+ * 
+ */
+export type UserOnboarding = $Result.DefaultSelection<Prisma.$UserOnboardingPayload>
 
 /**
  * Enums
@@ -197,6 +207,26 @@ export class PrismaClient<
     * ```
     */
   get integration(): Prisma.IntegrationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userPersona`: Exposes CRUD operations for the **UserPersona** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserPersonas
+    * const userPersonas = await prisma.userPersona.findMany()
+    * ```
+    */
+  get userPersona(): Prisma.UserPersonaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userOnboarding`: Exposes CRUD operations for the **UserOnboarding** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserOnboardings
+    * const userOnboardings = await prisma.userOnboarding.findMany()
+    * ```
+    */
+  get userOnboarding(): Prisma.UserOnboardingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -638,7 +668,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Integration: 'Integration'
+    Integration: 'Integration',
+    UserPersona: 'UserPersona',
+    UserOnboarding: 'UserOnboarding'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -657,7 +689,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "integration"
+      modelProps: "user" | "integration" | "userPersona" | "userOnboarding"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -809,6 +841,154 @@ export namespace Prisma {
           }
         }
       }
+      UserPersona: {
+        payload: Prisma.$UserPersonaPayload<ExtArgs>
+        fields: Prisma.UserPersonaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserPersonaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserPersonaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          findFirst: {
+            args: Prisma.UserPersonaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserPersonaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          findMany: {
+            args: Prisma.UserPersonaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>[]
+          }
+          create: {
+            args: Prisma.UserPersonaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          createMany: {
+            args: Prisma.UserPersonaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserPersonaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>[]
+          }
+          delete: {
+            args: Prisma.UserPersonaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          update: {
+            args: Prisma.UserPersonaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserPersonaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserPersonaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserPersonaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserPersonaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPersonaPayload>
+          }
+          aggregate: {
+            args: Prisma.UserPersonaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserPersona>
+          }
+          groupBy: {
+            args: Prisma.UserPersonaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserPersonaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserPersonaCountArgs<ExtArgs>
+            result: $Utils.Optional<UserPersonaCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserOnboarding: {
+        payload: Prisma.$UserOnboardingPayload<ExtArgs>
+        fields: Prisma.UserOnboardingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserOnboardingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserOnboardingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          findFirst: {
+            args: Prisma.UserOnboardingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserOnboardingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          findMany: {
+            args: Prisma.UserOnboardingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>[]
+          }
+          create: {
+            args: Prisma.UserOnboardingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          createMany: {
+            args: Prisma.UserOnboardingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserOnboardingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>[]
+          }
+          delete: {
+            args: Prisma.UserOnboardingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          update: {
+            args: Prisma.UserOnboardingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserOnboardingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserOnboardingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserOnboardingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserOnboardingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserOnboardingPayload>
+          }
+          aggregate: {
+            args: Prisma.UserOnboardingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserOnboarding>
+          }
+          groupBy: {
+            args: Prisma.UserOnboardingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserOnboardingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserOnboardingCountArgs<ExtArgs>
+            result: $Utils.Optional<UserOnboardingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -895,6 +1075,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     integration?: IntegrationOmit
+    userPersona?: UserPersonaOmit
+    userOnboarding?: UserOnboardingOmit
   }
 
   /* Types for Logging */
@@ -1016,6 +1198,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type UserPersonaCountOutputType
+   */
+
+  export type UserPersonaCountOutputType = {
+    users: number
+    onboardingsWithThisInitialPersona: number
+  }
+
+  export type UserPersonaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | UserPersonaCountOutputTypeCountUsersArgs
+    onboardingsWithThisInitialPersona?: boolean | UserPersonaCountOutputTypeCountOnboardingsWithThisInitialPersonaArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserPersonaCountOutputType without action
+   */
+  export type UserPersonaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersonaCountOutputType
+     */
+    select?: UserPersonaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserPersonaCountOutputType without action
+   */
+  export type UserPersonaCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
+  /**
+   * UserPersonaCountOutputType without action
+   */
+  export type UserPersonaCountOutputTypeCountOnboardingsWithThisInitialPersonaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserOnboardingWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1037,6 +1259,7 @@ export namespace Prisma {
     lastName: string | null
     picture: string | null
     googleId: string | null
+    chosenPersonaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
     role: $Enums.Role | null
@@ -1050,6 +1273,7 @@ export namespace Prisma {
     lastName: string | null
     picture: string | null
     googleId: string | null
+    chosenPersonaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
     role: $Enums.Role | null
@@ -1063,6 +1287,7 @@ export namespace Prisma {
     lastName: number
     picture: number
     googleId: number
+    chosenPersonaId: number
     createdAt: number
     updatedAt: number
     role: number
@@ -1078,6 +1303,7 @@ export namespace Prisma {
     lastName?: true
     picture?: true
     googleId?: true
+    chosenPersonaId?: true
     createdAt?: true
     updatedAt?: true
     role?: true
@@ -1091,6 +1317,7 @@ export namespace Prisma {
     lastName?: true
     picture?: true
     googleId?: true
+    chosenPersonaId?: true
     createdAt?: true
     updatedAt?: true
     role?: true
@@ -1104,6 +1331,7 @@ export namespace Prisma {
     lastName?: true
     picture?: true
     googleId?: true
+    chosenPersonaId?: true
     createdAt?: true
     updatedAt?: true
     role?: true
@@ -1190,6 +1418,7 @@ export namespace Prisma {
     lastName: string | null
     picture: string | null
     googleId: string | null
+    chosenPersonaId: string | null
     createdAt: Date
     updatedAt: Date
     role: $Enums.Role
@@ -1220,10 +1449,13 @@ export namespace Prisma {
     lastName?: boolean
     picture?: boolean
     googleId?: boolean
+    chosenPersonaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean
     integrations?: boolean | User$integrationsArgs<ExtArgs>
+    onboarding?: boolean | User$onboardingArgs<ExtArgs>
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1235,9 +1467,11 @@ export namespace Prisma {
     lastName?: boolean
     picture?: boolean
     googleId?: boolean
+    chosenPersonaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1248,9 +1482,11 @@ export namespace Prisma {
     lastName?: boolean
     picture?: boolean
     googleId?: boolean
+    chosenPersonaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1261,23 +1497,32 @@ export namespace Prisma {
     lastName?: boolean
     picture?: boolean
     googleId?: boolean
+    chosenPersonaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "picture" | "googleId" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "picture" | "googleId" | "chosenPersonaId" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     integrations?: boolean | User$integrationsArgs<ExtArgs>
+    onboarding?: boolean | User$onboardingArgs<ExtArgs>
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
+  }
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
+  }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
       integrations: Prisma.$IntegrationPayload<ExtArgs>[]
+      onboarding: Prisma.$UserOnboardingPayload<ExtArgs> | null
+      chosenPersona: Prisma.$UserPersonaPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1287,6 +1532,7 @@ export namespace Prisma {
       lastName: string | null
       picture: string | null
       googleId: string | null
+      chosenPersonaId: string | null
       createdAt: Date
       updatedAt: Date
       role: $Enums.Role
@@ -1685,6 +1931,8 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     integrations<T extends User$integrationsArgs<ExtArgs> = {}>(args?: Subset<T, User$integrationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    onboarding<T extends User$onboardingArgs<ExtArgs> = {}>(args?: Subset<T, User$onboardingArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    chosenPersona<T extends User$chosenPersonaArgs<ExtArgs> = {}>(args?: Subset<T, User$chosenPersonaArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1721,6 +1969,7 @@ export namespace Prisma {
     readonly lastName: FieldRef<"User", 'String'>
     readonly picture: FieldRef<"User", 'String'>
     readonly googleId: FieldRef<"User", 'String'>
+    readonly chosenPersonaId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly role: FieldRef<"User", 'Role'>
@@ -1973,6 +2222,10 @@ export namespace Prisma {
      */
     data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2043,6 +2296,10 @@ export namespace Prisma {
      * Limit how many Users to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2133,6 +2390,44 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: IntegrationScalarFieldEnum | IntegrationScalarFieldEnum[]
+  }
+
+  /**
+   * User.onboarding
+   */
+  export type User$onboardingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    where?: UserOnboardingWhereInput
+  }
+
+  /**
+   * User.chosenPersona
+   */
+  export type User$chosenPersonaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    where?: UserPersonaWhereInput
   }
 
   /**
@@ -3274,6 +3569,2246 @@ export namespace Prisma {
 
 
   /**
+   * Model UserPersona
+   */
+
+  export type AggregateUserPersona = {
+    _count: UserPersonaCountAggregateOutputType | null
+    _min: UserPersonaMinAggregateOutputType | null
+    _max: UserPersonaMaxAggregateOutputType | null
+  }
+
+  export type UserPersonaMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserPersonaMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserPersonaCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    defaultIntegrationTypes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserPersonaMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserPersonaMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserPersonaCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    defaultIntegrationTypes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserPersonaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserPersona to aggregate.
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPersonas to fetch.
+     */
+    orderBy?: UserPersonaOrderByWithRelationInput | UserPersonaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserPersonaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPersonas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPersonas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserPersonas
+    **/
+    _count?: true | UserPersonaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserPersonaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserPersonaMaxAggregateInputType
+  }
+
+  export type GetUserPersonaAggregateType<T extends UserPersonaAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserPersona]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserPersona[P]>
+      : GetScalarType<T[P], AggregateUserPersona[P]>
+  }
+
+
+
+
+  export type UserPersonaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserPersonaWhereInput
+    orderBy?: UserPersonaOrderByWithAggregationInput | UserPersonaOrderByWithAggregationInput[]
+    by: UserPersonaScalarFieldEnum[] | UserPersonaScalarFieldEnum
+    having?: UserPersonaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserPersonaCountAggregateInputType | true
+    _min?: UserPersonaMinAggregateInputType
+    _max?: UserPersonaMaxAggregateInputType
+  }
+
+  export type UserPersonaGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    defaultIntegrationTypes: $Enums.IntegrationType[]
+    createdAt: Date
+    updatedAt: Date
+    _count: UserPersonaCountAggregateOutputType | null
+    _min: UserPersonaMinAggregateOutputType | null
+    _max: UserPersonaMaxAggregateOutputType | null
+  }
+
+  type GetUserPersonaGroupByPayload<T extends UserPersonaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserPersonaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserPersonaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserPersonaGroupByOutputType[P]>
+            : GetScalarType<T[P], UserPersonaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserPersonaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    defaultIntegrationTypes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    users?: boolean | UserPersona$usersArgs<ExtArgs>
+    onboardingsWithThisInitialPersona?: boolean | UserPersona$onboardingsWithThisInitialPersonaArgs<ExtArgs>
+    _count?: boolean | UserPersonaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userPersona"]>
+
+  export type UserPersonaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    defaultIntegrationTypes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userPersona"]>
+
+  export type UserPersonaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    defaultIntegrationTypes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userPersona"]>
+
+  export type UserPersonaSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    defaultIntegrationTypes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserPersonaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "defaultIntegrationTypes" | "createdAt" | "updatedAt", ExtArgs["result"]["userPersona"]>
+  export type UserPersonaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | UserPersona$usersArgs<ExtArgs>
+    onboardingsWithThisInitialPersona?: boolean | UserPersona$onboardingsWithThisInitialPersonaArgs<ExtArgs>
+    _count?: boolean | UserPersonaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserPersonaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserPersonaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UserPersonaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserPersona"
+    objects: {
+      users: Prisma.$UserPayload<ExtArgs>[]
+      onboardingsWithThisInitialPersona: Prisma.$UserOnboardingPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      defaultIntegrationTypes: $Enums.IntegrationType[]
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userPersona"]>
+    composites: {}
+  }
+
+  type UserPersonaGetPayload<S extends boolean | null | undefined | UserPersonaDefaultArgs> = $Result.GetResult<Prisma.$UserPersonaPayload, S>
+
+  type UserPersonaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserPersonaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserPersonaCountAggregateInputType | true
+    }
+
+  export interface UserPersonaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserPersona'], meta: { name: 'UserPersona' } }
+    /**
+     * Find zero or one UserPersona that matches the filter.
+     * @param {UserPersonaFindUniqueArgs} args - Arguments to find a UserPersona
+     * @example
+     * // Get one UserPersona
+     * const userPersona = await prisma.userPersona.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserPersonaFindUniqueArgs>(args: SelectSubset<T, UserPersonaFindUniqueArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserPersona that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserPersonaFindUniqueOrThrowArgs} args - Arguments to find a UserPersona
+     * @example
+     * // Get one UserPersona
+     * const userPersona = await prisma.userPersona.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserPersonaFindUniqueOrThrowArgs>(args: SelectSubset<T, UserPersonaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserPersona that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaFindFirstArgs} args - Arguments to find a UserPersona
+     * @example
+     * // Get one UserPersona
+     * const userPersona = await prisma.userPersona.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserPersonaFindFirstArgs>(args?: SelectSubset<T, UserPersonaFindFirstArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserPersona that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaFindFirstOrThrowArgs} args - Arguments to find a UserPersona
+     * @example
+     * // Get one UserPersona
+     * const userPersona = await prisma.userPersona.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserPersonaFindFirstOrThrowArgs>(args?: SelectSubset<T, UserPersonaFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserPersonas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserPersonas
+     * const userPersonas = await prisma.userPersona.findMany()
+     * 
+     * // Get first 10 UserPersonas
+     * const userPersonas = await prisma.userPersona.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userPersonaWithIdOnly = await prisma.userPersona.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserPersonaFindManyArgs>(args?: SelectSubset<T, UserPersonaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserPersona.
+     * @param {UserPersonaCreateArgs} args - Arguments to create a UserPersona.
+     * @example
+     * // Create one UserPersona
+     * const UserPersona = await prisma.userPersona.create({
+     *   data: {
+     *     // ... data to create a UserPersona
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserPersonaCreateArgs>(args: SelectSubset<T, UserPersonaCreateArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserPersonas.
+     * @param {UserPersonaCreateManyArgs} args - Arguments to create many UserPersonas.
+     * @example
+     * // Create many UserPersonas
+     * const userPersona = await prisma.userPersona.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserPersonaCreateManyArgs>(args?: SelectSubset<T, UserPersonaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserPersonas and returns the data saved in the database.
+     * @param {UserPersonaCreateManyAndReturnArgs} args - Arguments to create many UserPersonas.
+     * @example
+     * // Create many UserPersonas
+     * const userPersona = await prisma.userPersona.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserPersonas and only return the `id`
+     * const userPersonaWithIdOnly = await prisma.userPersona.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserPersonaCreateManyAndReturnArgs>(args?: SelectSubset<T, UserPersonaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserPersona.
+     * @param {UserPersonaDeleteArgs} args - Arguments to delete one UserPersona.
+     * @example
+     * // Delete one UserPersona
+     * const UserPersona = await prisma.userPersona.delete({
+     *   where: {
+     *     // ... filter to delete one UserPersona
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserPersonaDeleteArgs>(args: SelectSubset<T, UserPersonaDeleteArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserPersona.
+     * @param {UserPersonaUpdateArgs} args - Arguments to update one UserPersona.
+     * @example
+     * // Update one UserPersona
+     * const userPersona = await prisma.userPersona.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserPersonaUpdateArgs>(args: SelectSubset<T, UserPersonaUpdateArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserPersonas.
+     * @param {UserPersonaDeleteManyArgs} args - Arguments to filter UserPersonas to delete.
+     * @example
+     * // Delete a few UserPersonas
+     * const { count } = await prisma.userPersona.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserPersonaDeleteManyArgs>(args?: SelectSubset<T, UserPersonaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserPersonas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserPersonas
+     * const userPersona = await prisma.userPersona.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserPersonaUpdateManyArgs>(args: SelectSubset<T, UserPersonaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserPersonas and returns the data updated in the database.
+     * @param {UserPersonaUpdateManyAndReturnArgs} args - Arguments to update many UserPersonas.
+     * @example
+     * // Update many UserPersonas
+     * const userPersona = await prisma.userPersona.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserPersonas and only return the `id`
+     * const userPersonaWithIdOnly = await prisma.userPersona.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserPersonaUpdateManyAndReturnArgs>(args: SelectSubset<T, UserPersonaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserPersona.
+     * @param {UserPersonaUpsertArgs} args - Arguments to update or create a UserPersona.
+     * @example
+     * // Update or create a UserPersona
+     * const userPersona = await prisma.userPersona.upsert({
+     *   create: {
+     *     // ... data to create a UserPersona
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserPersona we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserPersonaUpsertArgs>(args: SelectSubset<T, UserPersonaUpsertArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserPersonas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaCountArgs} args - Arguments to filter UserPersonas to count.
+     * @example
+     * // Count the number of UserPersonas
+     * const count = await prisma.userPersona.count({
+     *   where: {
+     *     // ... the filter for the UserPersonas we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserPersonaCountArgs>(
+      args?: Subset<T, UserPersonaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserPersonaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserPersona.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserPersonaAggregateArgs>(args: Subset<T, UserPersonaAggregateArgs>): Prisma.PrismaPromise<GetUserPersonaAggregateType<T>>
+
+    /**
+     * Group by UserPersona.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserPersonaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserPersonaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserPersonaGroupByArgs['orderBy'] }
+        : { orderBy?: UserPersonaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserPersonaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserPersonaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserPersona model
+   */
+  readonly fields: UserPersonaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserPersona.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserPersonaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    users<T extends UserPersona$usersArgs<ExtArgs> = {}>(args?: Subset<T, UserPersona$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    onboardingsWithThisInitialPersona<T extends UserPersona$onboardingsWithThisInitialPersonaArgs<ExtArgs> = {}>(args?: Subset<T, UserPersona$onboardingsWithThisInitialPersonaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserPersona model
+   */
+  interface UserPersonaFieldRefs {
+    readonly id: FieldRef<"UserPersona", 'String'>
+    readonly name: FieldRef<"UserPersona", 'String'>
+    readonly description: FieldRef<"UserPersona", 'String'>
+    readonly defaultIntegrationTypes: FieldRef<"UserPersona", 'IntegrationType[]'>
+    readonly createdAt: FieldRef<"UserPersona", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserPersona", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserPersona findUnique
+   */
+  export type UserPersonaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPersona to fetch.
+     */
+    where: UserPersonaWhereUniqueInput
+  }
+
+  /**
+   * UserPersona findUniqueOrThrow
+   */
+  export type UserPersonaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPersona to fetch.
+     */
+    where: UserPersonaWhereUniqueInput
+  }
+
+  /**
+   * UserPersona findFirst
+   */
+  export type UserPersonaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPersona to fetch.
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPersonas to fetch.
+     */
+    orderBy?: UserPersonaOrderByWithRelationInput | UserPersonaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserPersonas.
+     */
+    cursor?: UserPersonaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPersonas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPersonas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserPersonas.
+     */
+    distinct?: UserPersonaScalarFieldEnum | UserPersonaScalarFieldEnum[]
+  }
+
+  /**
+   * UserPersona findFirstOrThrow
+   */
+  export type UserPersonaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPersona to fetch.
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPersonas to fetch.
+     */
+    orderBy?: UserPersonaOrderByWithRelationInput | UserPersonaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserPersonas.
+     */
+    cursor?: UserPersonaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPersonas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPersonas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserPersonas.
+     */
+    distinct?: UserPersonaScalarFieldEnum | UserPersonaScalarFieldEnum[]
+  }
+
+  /**
+   * UserPersona findMany
+   */
+  export type UserPersonaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter, which UserPersonas to fetch.
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserPersonas to fetch.
+     */
+    orderBy?: UserPersonaOrderByWithRelationInput | UserPersonaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserPersonas.
+     */
+    cursor?: UserPersonaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserPersonas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserPersonas.
+     */
+    skip?: number
+    distinct?: UserPersonaScalarFieldEnum | UserPersonaScalarFieldEnum[]
+  }
+
+  /**
+   * UserPersona create
+   */
+  export type UserPersonaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserPersona.
+     */
+    data: XOR<UserPersonaCreateInput, UserPersonaUncheckedCreateInput>
+  }
+
+  /**
+   * UserPersona createMany
+   */
+  export type UserPersonaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserPersonas.
+     */
+    data: UserPersonaCreateManyInput | UserPersonaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserPersona createManyAndReturn
+   */
+  export type UserPersonaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserPersonas.
+     */
+    data: UserPersonaCreateManyInput | UserPersonaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserPersona update
+   */
+  export type UserPersonaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserPersona.
+     */
+    data: XOR<UserPersonaUpdateInput, UserPersonaUncheckedUpdateInput>
+    /**
+     * Choose, which UserPersona to update.
+     */
+    where: UserPersonaWhereUniqueInput
+  }
+
+  /**
+   * UserPersona updateMany
+   */
+  export type UserPersonaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserPersonas.
+     */
+    data: XOR<UserPersonaUpdateManyMutationInput, UserPersonaUncheckedUpdateManyInput>
+    /**
+     * Filter which UserPersonas to update
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * Limit how many UserPersonas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserPersona updateManyAndReturn
+   */
+  export type UserPersonaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * The data used to update UserPersonas.
+     */
+    data: XOR<UserPersonaUpdateManyMutationInput, UserPersonaUncheckedUpdateManyInput>
+    /**
+     * Filter which UserPersonas to update
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * Limit how many UserPersonas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserPersona upsert
+   */
+  export type UserPersonaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserPersona to update in case it exists.
+     */
+    where: UserPersonaWhereUniqueInput
+    /**
+     * In case the UserPersona found by the `where` argument doesn't exist, create a new UserPersona with this data.
+     */
+    create: XOR<UserPersonaCreateInput, UserPersonaUncheckedCreateInput>
+    /**
+     * In case the UserPersona was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserPersonaUpdateInput, UserPersonaUncheckedUpdateInput>
+  }
+
+  /**
+   * UserPersona delete
+   */
+  export type UserPersonaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    /**
+     * Filter which UserPersona to delete.
+     */
+    where: UserPersonaWhereUniqueInput
+  }
+
+  /**
+   * UserPersona deleteMany
+   */
+  export type UserPersonaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserPersonas to delete
+     */
+    where?: UserPersonaWhereInput
+    /**
+     * Limit how many UserPersonas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserPersona.users
+   */
+  export type UserPersona$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * UserPersona.onboardingsWithThisInitialPersona
+   */
+  export type UserPersona$onboardingsWithThisInitialPersonaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    where?: UserOnboardingWhereInput
+    orderBy?: UserOnboardingOrderByWithRelationInput | UserOnboardingOrderByWithRelationInput[]
+    cursor?: UserOnboardingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserOnboardingScalarFieldEnum | UserOnboardingScalarFieldEnum[]
+  }
+
+  /**
+   * UserPersona without action
+   */
+  export type UserPersonaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserOnboarding
+   */
+
+  export type AggregateUserOnboarding = {
+    _count: UserOnboardingCountAggregateOutputType | null
+    _min: UserOnboardingMinAggregateOutputType | null
+    _max: UserOnboardingMaxAggregateOutputType | null
+  }
+
+  export type UserOnboardingMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    onboardingId: string | null
+    initialPersonaId: string | null
+    completed: boolean | null
+    currentStep: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserOnboardingMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    onboardingId: string | null
+    initialPersonaId: string | null
+    completed: boolean | null
+    currentStep: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserOnboardingCountAggregateOutputType = {
+    id: number
+    userId: number
+    onboardingId: number
+    initialPersonaId: number
+    completed: number
+    currentStep: number
+    onboardingData: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserOnboardingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    onboardingId?: true
+    initialPersonaId?: true
+    completed?: true
+    currentStep?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserOnboardingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    onboardingId?: true
+    initialPersonaId?: true
+    completed?: true
+    currentStep?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserOnboardingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    onboardingId?: true
+    initialPersonaId?: true
+    completed?: true
+    currentStep?: true
+    onboardingData?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserOnboardingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserOnboarding to aggregate.
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserOnboardings to fetch.
+     */
+    orderBy?: UserOnboardingOrderByWithRelationInput | UserOnboardingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserOnboardingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserOnboardings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserOnboardings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserOnboardings
+    **/
+    _count?: true | UserOnboardingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserOnboardingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserOnboardingMaxAggregateInputType
+  }
+
+  export type GetUserOnboardingAggregateType<T extends UserOnboardingAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserOnboarding]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserOnboarding[P]>
+      : GetScalarType<T[P], AggregateUserOnboarding[P]>
+  }
+
+
+
+
+  export type UserOnboardingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserOnboardingWhereInput
+    orderBy?: UserOnboardingOrderByWithAggregationInput | UserOnboardingOrderByWithAggregationInput[]
+    by: UserOnboardingScalarFieldEnum[] | UserOnboardingScalarFieldEnum
+    having?: UserOnboardingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserOnboardingCountAggregateInputType | true
+    _min?: UserOnboardingMinAggregateInputType
+    _max?: UserOnboardingMaxAggregateInputType
+  }
+
+  export type UserOnboardingGroupByOutputType = {
+    id: string
+    userId: string
+    onboardingId: string
+    initialPersonaId: string | null
+    completed: boolean
+    currentStep: string | null
+    onboardingData: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: UserOnboardingCountAggregateOutputType | null
+    _min: UserOnboardingMinAggregateOutputType | null
+    _max: UserOnboardingMaxAggregateOutputType | null
+  }
+
+  type GetUserOnboardingGroupByPayload<T extends UserOnboardingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserOnboardingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserOnboardingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserOnboardingGroupByOutputType[P]>
+            : GetScalarType<T[P], UserOnboardingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserOnboardingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    onboardingId?: boolean
+    initialPersonaId?: boolean
+    completed?: boolean
+    currentStep?: boolean
+    onboardingData?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }, ExtArgs["result"]["userOnboarding"]>
+
+  export type UserOnboardingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    onboardingId?: boolean
+    initialPersonaId?: boolean
+    completed?: boolean
+    currentStep?: boolean
+    onboardingData?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }, ExtArgs["result"]["userOnboarding"]>
+
+  export type UserOnboardingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    onboardingId?: boolean
+    initialPersonaId?: boolean
+    completed?: boolean
+    currentStep?: boolean
+    onboardingData?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }, ExtArgs["result"]["userOnboarding"]>
+
+  export type UserOnboardingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    onboardingId?: boolean
+    initialPersonaId?: boolean
+    completed?: boolean
+    currentStep?: boolean
+    onboardingData?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserOnboardingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "onboardingId" | "initialPersonaId" | "completed" | "currentStep" | "onboardingData" | "createdAt" | "updatedAt", ExtArgs["result"]["userOnboarding"]>
+  export type UserOnboardingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }
+  export type UserOnboardingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }
+  export type UserOnboardingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    initialPersona?: boolean | UserOnboarding$initialPersonaArgs<ExtArgs>
+  }
+
+  export type $UserOnboardingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserOnboarding"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      initialPersona: Prisma.$UserPersonaPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      onboardingId: string
+      initialPersonaId: string | null
+      completed: boolean
+      currentStep: string | null
+      onboardingData: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userOnboarding"]>
+    composites: {}
+  }
+
+  type UserOnboardingGetPayload<S extends boolean | null | undefined | UserOnboardingDefaultArgs> = $Result.GetResult<Prisma.$UserOnboardingPayload, S>
+
+  type UserOnboardingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserOnboardingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserOnboardingCountAggregateInputType | true
+    }
+
+  export interface UserOnboardingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserOnboarding'], meta: { name: 'UserOnboarding' } }
+    /**
+     * Find zero or one UserOnboarding that matches the filter.
+     * @param {UserOnboardingFindUniqueArgs} args - Arguments to find a UserOnboarding
+     * @example
+     * // Get one UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserOnboardingFindUniqueArgs>(args: SelectSubset<T, UserOnboardingFindUniqueArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserOnboarding that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserOnboardingFindUniqueOrThrowArgs} args - Arguments to find a UserOnboarding
+     * @example
+     * // Get one UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserOnboardingFindUniqueOrThrowArgs>(args: SelectSubset<T, UserOnboardingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserOnboarding that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingFindFirstArgs} args - Arguments to find a UserOnboarding
+     * @example
+     * // Get one UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserOnboardingFindFirstArgs>(args?: SelectSubset<T, UserOnboardingFindFirstArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserOnboarding that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingFindFirstOrThrowArgs} args - Arguments to find a UserOnboarding
+     * @example
+     * // Get one UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserOnboardingFindFirstOrThrowArgs>(args?: SelectSubset<T, UserOnboardingFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserOnboardings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserOnboardings
+     * const userOnboardings = await prisma.userOnboarding.findMany()
+     * 
+     * // Get first 10 UserOnboardings
+     * const userOnboardings = await prisma.userOnboarding.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userOnboardingWithIdOnly = await prisma.userOnboarding.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserOnboardingFindManyArgs>(args?: SelectSubset<T, UserOnboardingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserOnboarding.
+     * @param {UserOnboardingCreateArgs} args - Arguments to create a UserOnboarding.
+     * @example
+     * // Create one UserOnboarding
+     * const UserOnboarding = await prisma.userOnboarding.create({
+     *   data: {
+     *     // ... data to create a UserOnboarding
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserOnboardingCreateArgs>(args: SelectSubset<T, UserOnboardingCreateArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserOnboardings.
+     * @param {UserOnboardingCreateManyArgs} args - Arguments to create many UserOnboardings.
+     * @example
+     * // Create many UserOnboardings
+     * const userOnboarding = await prisma.userOnboarding.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserOnboardingCreateManyArgs>(args?: SelectSubset<T, UserOnboardingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserOnboardings and returns the data saved in the database.
+     * @param {UserOnboardingCreateManyAndReturnArgs} args - Arguments to create many UserOnboardings.
+     * @example
+     * // Create many UserOnboardings
+     * const userOnboarding = await prisma.userOnboarding.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserOnboardings and only return the `id`
+     * const userOnboardingWithIdOnly = await prisma.userOnboarding.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserOnboardingCreateManyAndReturnArgs>(args?: SelectSubset<T, UserOnboardingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserOnboarding.
+     * @param {UserOnboardingDeleteArgs} args - Arguments to delete one UserOnboarding.
+     * @example
+     * // Delete one UserOnboarding
+     * const UserOnboarding = await prisma.userOnboarding.delete({
+     *   where: {
+     *     // ... filter to delete one UserOnboarding
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserOnboardingDeleteArgs>(args: SelectSubset<T, UserOnboardingDeleteArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserOnboarding.
+     * @param {UserOnboardingUpdateArgs} args - Arguments to update one UserOnboarding.
+     * @example
+     * // Update one UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserOnboardingUpdateArgs>(args: SelectSubset<T, UserOnboardingUpdateArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserOnboardings.
+     * @param {UserOnboardingDeleteManyArgs} args - Arguments to filter UserOnboardings to delete.
+     * @example
+     * // Delete a few UserOnboardings
+     * const { count } = await prisma.userOnboarding.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserOnboardingDeleteManyArgs>(args?: SelectSubset<T, UserOnboardingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserOnboardings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserOnboardings
+     * const userOnboarding = await prisma.userOnboarding.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserOnboardingUpdateManyArgs>(args: SelectSubset<T, UserOnboardingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserOnboardings and returns the data updated in the database.
+     * @param {UserOnboardingUpdateManyAndReturnArgs} args - Arguments to update many UserOnboardings.
+     * @example
+     * // Update many UserOnboardings
+     * const userOnboarding = await prisma.userOnboarding.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserOnboardings and only return the `id`
+     * const userOnboardingWithIdOnly = await prisma.userOnboarding.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserOnboardingUpdateManyAndReturnArgs>(args: SelectSubset<T, UserOnboardingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserOnboarding.
+     * @param {UserOnboardingUpsertArgs} args - Arguments to update or create a UserOnboarding.
+     * @example
+     * // Update or create a UserOnboarding
+     * const userOnboarding = await prisma.userOnboarding.upsert({
+     *   create: {
+     *     // ... data to create a UserOnboarding
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserOnboarding we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserOnboardingUpsertArgs>(args: SelectSubset<T, UserOnboardingUpsertArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserOnboardings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingCountArgs} args - Arguments to filter UserOnboardings to count.
+     * @example
+     * // Count the number of UserOnboardings
+     * const count = await prisma.userOnboarding.count({
+     *   where: {
+     *     // ... the filter for the UserOnboardings we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserOnboardingCountArgs>(
+      args?: Subset<T, UserOnboardingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserOnboardingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserOnboarding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserOnboardingAggregateArgs>(args: Subset<T, UserOnboardingAggregateArgs>): Prisma.PrismaPromise<GetUserOnboardingAggregateType<T>>
+
+    /**
+     * Group by UserOnboarding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserOnboardingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserOnboardingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserOnboardingGroupByArgs['orderBy'] }
+        : { orderBy?: UserOnboardingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserOnboardingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserOnboardingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserOnboarding model
+   */
+  readonly fields: UserOnboardingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserOnboarding.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserOnboardingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    initialPersona<T extends UserOnboarding$initialPersonaArgs<ExtArgs> = {}>(args?: Subset<T, UserOnboarding$initialPersonaArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserOnboarding model
+   */
+  interface UserOnboardingFieldRefs {
+    readonly id: FieldRef<"UserOnboarding", 'String'>
+    readonly userId: FieldRef<"UserOnboarding", 'String'>
+    readonly onboardingId: FieldRef<"UserOnboarding", 'String'>
+    readonly initialPersonaId: FieldRef<"UserOnboarding", 'String'>
+    readonly completed: FieldRef<"UserOnboarding", 'Boolean'>
+    readonly currentStep: FieldRef<"UserOnboarding", 'String'>
+    readonly onboardingData: FieldRef<"UserOnboarding", 'Json'>
+    readonly createdAt: FieldRef<"UserOnboarding", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserOnboarding", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserOnboarding findUnique
+   */
+  export type UserOnboardingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter, which UserOnboarding to fetch.
+     */
+    where: UserOnboardingWhereUniqueInput
+  }
+
+  /**
+   * UserOnboarding findUniqueOrThrow
+   */
+  export type UserOnboardingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter, which UserOnboarding to fetch.
+     */
+    where: UserOnboardingWhereUniqueInput
+  }
+
+  /**
+   * UserOnboarding findFirst
+   */
+  export type UserOnboardingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter, which UserOnboarding to fetch.
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserOnboardings to fetch.
+     */
+    orderBy?: UserOnboardingOrderByWithRelationInput | UserOnboardingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserOnboardings.
+     */
+    cursor?: UserOnboardingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserOnboardings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserOnboardings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserOnboardings.
+     */
+    distinct?: UserOnboardingScalarFieldEnum | UserOnboardingScalarFieldEnum[]
+  }
+
+  /**
+   * UserOnboarding findFirstOrThrow
+   */
+  export type UserOnboardingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter, which UserOnboarding to fetch.
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserOnboardings to fetch.
+     */
+    orderBy?: UserOnboardingOrderByWithRelationInput | UserOnboardingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserOnboardings.
+     */
+    cursor?: UserOnboardingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserOnboardings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserOnboardings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserOnboardings.
+     */
+    distinct?: UserOnboardingScalarFieldEnum | UserOnboardingScalarFieldEnum[]
+  }
+
+  /**
+   * UserOnboarding findMany
+   */
+  export type UserOnboardingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter, which UserOnboardings to fetch.
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserOnboardings to fetch.
+     */
+    orderBy?: UserOnboardingOrderByWithRelationInput | UserOnboardingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserOnboardings.
+     */
+    cursor?: UserOnboardingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserOnboardings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserOnboardings.
+     */
+    skip?: number
+    distinct?: UserOnboardingScalarFieldEnum | UserOnboardingScalarFieldEnum[]
+  }
+
+  /**
+   * UserOnboarding create
+   */
+  export type UserOnboardingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserOnboarding.
+     */
+    data: XOR<UserOnboardingCreateInput, UserOnboardingUncheckedCreateInput>
+  }
+
+  /**
+   * UserOnboarding createMany
+   */
+  export type UserOnboardingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserOnboardings.
+     */
+    data: UserOnboardingCreateManyInput | UserOnboardingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserOnboarding createManyAndReturn
+   */
+  export type UserOnboardingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserOnboardings.
+     */
+    data: UserOnboardingCreateManyInput | UserOnboardingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserOnboarding update
+   */
+  export type UserOnboardingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserOnboarding.
+     */
+    data: XOR<UserOnboardingUpdateInput, UserOnboardingUncheckedUpdateInput>
+    /**
+     * Choose, which UserOnboarding to update.
+     */
+    where: UserOnboardingWhereUniqueInput
+  }
+
+  /**
+   * UserOnboarding updateMany
+   */
+  export type UserOnboardingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserOnboardings.
+     */
+    data: XOR<UserOnboardingUpdateManyMutationInput, UserOnboardingUncheckedUpdateManyInput>
+    /**
+     * Filter which UserOnboardings to update
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * Limit how many UserOnboardings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserOnboarding updateManyAndReturn
+   */
+  export type UserOnboardingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * The data used to update UserOnboardings.
+     */
+    data: XOR<UserOnboardingUpdateManyMutationInput, UserOnboardingUncheckedUpdateManyInput>
+    /**
+     * Filter which UserOnboardings to update
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * Limit how many UserOnboardings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserOnboarding upsert
+   */
+  export type UserOnboardingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserOnboarding to update in case it exists.
+     */
+    where: UserOnboardingWhereUniqueInput
+    /**
+     * In case the UserOnboarding found by the `where` argument doesn't exist, create a new UserOnboarding with this data.
+     */
+    create: XOR<UserOnboardingCreateInput, UserOnboardingUncheckedCreateInput>
+    /**
+     * In case the UserOnboarding was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserOnboardingUpdateInput, UserOnboardingUncheckedUpdateInput>
+  }
+
+  /**
+   * UserOnboarding delete
+   */
+  export type UserOnboardingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+    /**
+     * Filter which UserOnboarding to delete.
+     */
+    where: UserOnboardingWhereUniqueInput
+  }
+
+  /**
+   * UserOnboarding deleteMany
+   */
+  export type UserOnboardingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserOnboardings to delete
+     */
+    where?: UserOnboardingWhereInput
+    /**
+     * Limit how many UserOnboardings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserOnboarding.initialPersona
+   */
+  export type UserOnboarding$initialPersonaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserPersona
+     */
+    select?: UserPersonaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserPersona
+     */
+    omit?: UserPersonaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserPersonaInclude<ExtArgs> | null
+    where?: UserPersonaWhereInput
+  }
+
+  /**
+   * UserOnboarding without action
+   */
+  export type UserOnboardingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserOnboarding
+     */
+    select?: UserOnboardingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserOnboarding
+     */
+    omit?: UserOnboardingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserOnboardingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3295,6 +5830,7 @@ export namespace Prisma {
     lastName: 'lastName',
     picture: 'picture',
     googleId: 'googleId',
+    chosenPersonaId: 'chosenPersonaId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     role: 'role'
@@ -3317,6 +5853,33 @@ export namespace Prisma {
   };
 
   export type IntegrationScalarFieldEnum = (typeof IntegrationScalarFieldEnum)[keyof typeof IntegrationScalarFieldEnum]
+
+
+  export const UserPersonaScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    defaultIntegrationTypes: 'defaultIntegrationTypes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserPersonaScalarFieldEnum = (typeof UserPersonaScalarFieldEnum)[keyof typeof UserPersonaScalarFieldEnum]
+
+
+  export const UserOnboardingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    onboardingId: 'onboardingId',
+    initialPersonaId: 'initialPersonaId',
+    completed: 'completed',
+    currentStep: 'currentStep',
+    onboardingData: 'onboardingData',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserOnboardingScalarFieldEnum = (typeof UserOnboardingScalarFieldEnum)[keyof typeof UserOnboardingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3436,6 +5999,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3463,10 +6033,13 @@ export namespace Prisma {
     lastName?: StringNullableFilter<"User"> | string | null
     picture?: StringNullableFilter<"User"> | string | null
     googleId?: StringNullableFilter<"User"> | string | null
+    chosenPersonaId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     integrations?: IntegrationListRelationFilter
+    onboarding?: XOR<UserOnboardingNullableScalarRelationFilter, UserOnboardingWhereInput> | null
+    chosenPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3477,10 +6050,13 @@ export namespace Prisma {
     lastName?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     googleId?: SortOrderInput | SortOrder
+    chosenPersonaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
     integrations?: IntegrationOrderByRelationAggregateInput
+    onboarding?: UserOnboardingOrderByWithRelationInput
+    chosenPersona?: UserPersonaOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3494,10 +6070,13 @@ export namespace Prisma {
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     picture?: StringNullableFilter<"User"> | string | null
+    chosenPersonaId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     integrations?: IntegrationListRelationFilter
+    onboarding?: XOR<UserOnboardingNullableScalarRelationFilter, UserOnboardingWhereInput> | null
+    chosenPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
   }, "id" | "email" | "googleId">
 
   export type UserOrderByWithAggregationInput = {
@@ -3508,6 +6087,7 @@ export namespace Prisma {
     lastName?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     googleId?: SortOrderInput | SortOrder
+    chosenPersonaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
@@ -3527,6 +6107,7 @@ export namespace Prisma {
     lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
     picture?: StringNullableWithAggregatesFilter<"User"> | string | null
     googleId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    chosenPersonaId?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
@@ -3613,6 +6194,147 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Integration"> | Date | string
   }
 
+  export type UserPersonaWhereInput = {
+    AND?: UserPersonaWhereInput | UserPersonaWhereInput[]
+    OR?: UserPersonaWhereInput[]
+    NOT?: UserPersonaWhereInput | UserPersonaWhereInput[]
+    id?: StringFilter<"UserPersona"> | string
+    name?: StringFilter<"UserPersona"> | string
+    description?: StringNullableFilter<"UserPersona"> | string | null
+    defaultIntegrationTypes?: EnumIntegrationTypeNullableListFilter<"UserPersona">
+    createdAt?: DateTimeFilter<"UserPersona"> | Date | string
+    updatedAt?: DateTimeFilter<"UserPersona"> | Date | string
+    users?: UserListRelationFilter
+    onboardingsWithThisInitialPersona?: UserOnboardingListRelationFilter
+  }
+
+  export type UserPersonaOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    defaultIntegrationTypes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    users?: UserOrderByRelationAggregateInput
+    onboardingsWithThisInitialPersona?: UserOnboardingOrderByRelationAggregateInput
+  }
+
+  export type UserPersonaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: UserPersonaWhereInput | UserPersonaWhereInput[]
+    OR?: UserPersonaWhereInput[]
+    NOT?: UserPersonaWhereInput | UserPersonaWhereInput[]
+    description?: StringNullableFilter<"UserPersona"> | string | null
+    defaultIntegrationTypes?: EnumIntegrationTypeNullableListFilter<"UserPersona">
+    createdAt?: DateTimeFilter<"UserPersona"> | Date | string
+    updatedAt?: DateTimeFilter<"UserPersona"> | Date | string
+    users?: UserListRelationFilter
+    onboardingsWithThisInitialPersona?: UserOnboardingListRelationFilter
+  }, "id" | "name">
+
+  export type UserPersonaOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    defaultIntegrationTypes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserPersonaCountOrderByAggregateInput
+    _max?: UserPersonaMaxOrderByAggregateInput
+    _min?: UserPersonaMinOrderByAggregateInput
+  }
+
+  export type UserPersonaScalarWhereWithAggregatesInput = {
+    AND?: UserPersonaScalarWhereWithAggregatesInput | UserPersonaScalarWhereWithAggregatesInput[]
+    OR?: UserPersonaScalarWhereWithAggregatesInput[]
+    NOT?: UserPersonaScalarWhereWithAggregatesInput | UserPersonaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserPersona"> | string
+    name?: StringWithAggregatesFilter<"UserPersona"> | string
+    description?: StringNullableWithAggregatesFilter<"UserPersona"> | string | null
+    defaultIntegrationTypes?: EnumIntegrationTypeNullableListFilter<"UserPersona">
+    createdAt?: DateTimeWithAggregatesFilter<"UserPersona"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserPersona"> | Date | string
+  }
+
+  export type UserOnboardingWhereInput = {
+    AND?: UserOnboardingWhereInput | UserOnboardingWhereInput[]
+    OR?: UserOnboardingWhereInput[]
+    NOT?: UserOnboardingWhereInput | UserOnboardingWhereInput[]
+    id?: StringFilter<"UserOnboarding"> | string
+    userId?: StringFilter<"UserOnboarding"> | string
+    onboardingId?: StringFilter<"UserOnboarding"> | string
+    initialPersonaId?: StringNullableFilter<"UserOnboarding"> | string | null
+    completed?: BoolFilter<"UserOnboarding"> | boolean
+    currentStep?: StringNullableFilter<"UserOnboarding"> | string | null
+    onboardingData?: JsonNullableFilter<"UserOnboarding">
+    createdAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+    updatedAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    initialPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
+  }
+
+  export type UserOnboardingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    onboardingId?: SortOrder
+    initialPersonaId?: SortOrderInput | SortOrder
+    completed?: SortOrder
+    currentStep?: SortOrderInput | SortOrder
+    onboardingData?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    initialPersona?: UserPersonaOrderByWithRelationInput
+  }
+
+  export type UserOnboardingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserOnboardingWhereInput | UserOnboardingWhereInput[]
+    OR?: UserOnboardingWhereInput[]
+    NOT?: UserOnboardingWhereInput | UserOnboardingWhereInput[]
+    onboardingId?: StringFilter<"UserOnboarding"> | string
+    initialPersonaId?: StringNullableFilter<"UserOnboarding"> | string | null
+    completed?: BoolFilter<"UserOnboarding"> | boolean
+    currentStep?: StringNullableFilter<"UserOnboarding"> | string | null
+    onboardingData?: JsonNullableFilter<"UserOnboarding">
+    createdAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+    updatedAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    initialPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
+  }, "id" | "userId">
+
+  export type UserOnboardingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    onboardingId?: SortOrder
+    initialPersonaId?: SortOrderInput | SortOrder
+    completed?: SortOrder
+    currentStep?: SortOrderInput | SortOrder
+    onboardingData?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserOnboardingCountOrderByAggregateInput
+    _max?: UserOnboardingMaxOrderByAggregateInput
+    _min?: UserOnboardingMinOrderByAggregateInput
+  }
+
+  export type UserOnboardingScalarWhereWithAggregatesInput = {
+    AND?: UserOnboardingScalarWhereWithAggregatesInput | UserOnboardingScalarWhereWithAggregatesInput[]
+    OR?: UserOnboardingScalarWhereWithAggregatesInput[]
+    NOT?: UserOnboardingScalarWhereWithAggregatesInput | UserOnboardingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserOnboarding"> | string
+    userId?: StringWithAggregatesFilter<"UserOnboarding"> | string
+    onboardingId?: StringWithAggregatesFilter<"UserOnboarding"> | string
+    initialPersonaId?: StringNullableWithAggregatesFilter<"UserOnboarding"> | string | null
+    completed?: BoolWithAggregatesFilter<"UserOnboarding"> | boolean
+    currentStep?: StringNullableWithAggregatesFilter<"UserOnboarding"> | string | null
+    onboardingData?: JsonNullableWithAggregatesFilter<"UserOnboarding">
+    createdAt?: DateTimeWithAggregatesFilter<"UserOnboarding"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserOnboarding"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -3625,6 +6347,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.Role
     integrations?: IntegrationCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
+    chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3635,10 +6359,12 @@ export namespace Prisma {
     lastName?: string | null
     picture?: string | null
     googleId?: string | null
+    chosenPersonaId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
     integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3653,6 +6379,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
+    chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3663,10 +6391,12 @@ export namespace Prisma {
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    chosenPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3677,6 +6407,7 @@ export namespace Prisma {
     lastName?: string | null
     picture?: string | null
     googleId?: string | null
+    chosenPersonaId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
@@ -3703,6 +6434,7 @@ export namespace Prisma {
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    chosenPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -3798,6 +6530,159 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserPersonaCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutChosenPersonaInput
+    onboardingsWithThisInitialPersona?: UserOnboardingCreateNestedManyWithoutInitialPersonaInput
+  }
+
+  export type UserPersonaUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutChosenPersonaInput
+    onboardingsWithThisInitialPersona?: UserOnboardingUncheckedCreateNestedManyWithoutInitialPersonaInput
+  }
+
+  export type UserPersonaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutChosenPersonaNestedInput
+    onboardingsWithThisInitialPersona?: UserOnboardingUpdateManyWithoutInitialPersonaNestedInput
+  }
+
+  export type UserPersonaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutChosenPersonaNestedInput
+    onboardingsWithThisInitialPersona?: UserOnboardingUncheckedUpdateManyWithoutInitialPersonaNestedInput
+  }
+
+  export type UserPersonaCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserPersonaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserPersonaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserOnboardingCreateInput = {
+    id?: string
+    onboardingId: string
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutOnboardingInput
+    initialPersona?: UserPersonaCreateNestedOneWithoutOnboardingsWithThisInitialPersonaInput
+  }
+
+  export type UserOnboardingUncheckedCreateInput = {
+    id?: string
+    userId: string
+    onboardingId: string
+    initialPersonaId?: string | null
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserOnboardingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOnboardingNestedInput
+    initialPersona?: UserPersonaUpdateOneWithoutOnboardingsWithThisInitialPersonaNestedInput
+  }
+
+  export type UserOnboardingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    initialPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserOnboardingCreateManyInput = {
+    id?: string
+    userId: string
+    onboardingId: string
+    initialPersonaId?: string | null
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserOnboardingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserOnboardingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    initialPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3852,6 +6737,16 @@ export namespace Prisma {
     none?: IntegrationWhereInput
   }
 
+  export type UserOnboardingNullableScalarRelationFilter = {
+    is?: UserOnboardingWhereInput | null
+    isNot?: UserOnboardingWhereInput | null
+  }
+
+  export type UserPersonaNullableScalarRelationFilter = {
+    is?: UserPersonaWhereInput | null
+    isNot?: UserPersonaWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -3869,6 +6764,7 @@ export namespace Prisma {
     lastName?: SortOrder
     picture?: SortOrder
     googleId?: SortOrder
+    chosenPersonaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
@@ -3882,6 +6778,7 @@ export namespace Prisma {
     lastName?: SortOrder
     picture?: SortOrder
     googleId?: SortOrder
+    chosenPersonaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
@@ -3895,6 +6792,7 @@ export namespace Prisma {
     lastName?: SortOrder
     picture?: SortOrder
     googleId?: SortOrder
+    chosenPersonaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
@@ -4098,6 +6996,106 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type EnumIntegrationTypeNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel> | null
+    has?: $Enums.IntegrationType | EnumIntegrationTypeFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
+  export type UserOnboardingListRelationFilter = {
+    every?: UserOnboardingWhereInput
+    some?: UserOnboardingWhereInput
+    none?: UserOnboardingWhereInput
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserOnboardingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserPersonaCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    defaultIntegrationTypes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserPersonaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserPersonaMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type UserOnboardingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    onboardingId?: SortOrder
+    initialPersonaId?: SortOrder
+    completed?: SortOrder
+    currentStep?: SortOrder
+    onboardingData?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserOnboardingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    onboardingId?: SortOrder
+    initialPersonaId?: SortOrder
+    completed?: SortOrder
+    currentStep?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserOnboardingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    onboardingId?: SortOrder
+    initialPersonaId?: SortOrder
+    completed?: SortOrder
+    currentStep?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type IntegrationCreateNestedManyWithoutUserInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
@@ -4105,11 +7103,29 @@ export namespace Prisma {
     connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
   }
 
+  export type UserOnboardingCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutUserInput
+    connect?: UserOnboardingWhereUniqueInput
+  }
+
+  export type UserPersonaCreateNestedOneWithoutUsersInput = {
+    create?: XOR<UserPersonaCreateWithoutUsersInput, UserPersonaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: UserPersonaCreateOrConnectWithoutUsersInput
+    connect?: UserPersonaWhereUniqueInput
+  }
+
   export type IntegrationUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
     createMany?: IntegrationCreateManyUserInputEnvelope
     connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+  }
+
+  export type UserOnboardingUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutUserInput
+    connect?: UserOnboardingWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -4142,6 +7158,26 @@ export namespace Prisma {
     deleteMany?: IntegrationScalarWhereInput | IntegrationScalarWhereInput[]
   }
 
+  export type UserOnboardingUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutUserInput
+    upsert?: UserOnboardingUpsertWithoutUserInput
+    disconnect?: UserOnboardingWhereInput | boolean
+    delete?: UserOnboardingWhereInput | boolean
+    connect?: UserOnboardingWhereUniqueInput
+    update?: XOR<XOR<UserOnboardingUpdateToOneWithWhereWithoutUserInput, UserOnboardingUpdateWithoutUserInput>, UserOnboardingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserPersonaUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<UserPersonaCreateWithoutUsersInput, UserPersonaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: UserPersonaCreateOrConnectWithoutUsersInput
+    upsert?: UserPersonaUpsertWithoutUsersInput
+    disconnect?: UserPersonaWhereInput | boolean
+    delete?: UserPersonaWhereInput | boolean
+    connect?: UserPersonaWhereUniqueInput
+    update?: XOR<XOR<UserPersonaUpdateToOneWithWhereWithoutUsersInput, UserPersonaUpdateWithoutUsersInput>, UserPersonaUncheckedUpdateWithoutUsersInput>
+  }
+
   export type IntegrationUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
@@ -4154,6 +7190,16 @@ export namespace Prisma {
     update?: IntegrationUpdateWithWhereUniqueWithoutUserInput | IntegrationUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: IntegrationUpdateManyWithWhereWithoutUserInput | IntegrationUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: IntegrationScalarWhereInput | IntegrationScalarWhereInput[]
+  }
+
+  export type UserOnboardingUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutUserInput
+    upsert?: UserOnboardingUpsertWithoutUserInput
+    disconnect?: UserOnboardingWhereInput | boolean
+    delete?: UserOnboardingWhereInput | boolean
+    connect?: UserOnboardingWhereUniqueInput
+    update?: XOR<XOR<UserOnboardingUpdateToOneWithWhereWithoutUserInput, UserOnboardingUpdateWithoutUserInput>, UserOnboardingUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutIntegrationsInput = {
@@ -4176,6 +7222,133 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutIntegrationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutIntegrationsInput, UserUpdateWithoutIntegrationsInput>, UserUncheckedUpdateWithoutIntegrationsInput>
+  }
+
+  export type UserPersonaCreatedefaultIntegrationTypesInput = {
+    set: $Enums.IntegrationType[]
+  }
+
+  export type UserCreateNestedManyWithoutChosenPersonaInput = {
+    create?: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput> | UserCreateWithoutChosenPersonaInput[] | UserUncheckedCreateWithoutChosenPersonaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChosenPersonaInput | UserCreateOrConnectWithoutChosenPersonaInput[]
+    createMany?: UserCreateManyChosenPersonaInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserOnboardingCreateNestedManyWithoutInitialPersonaInput = {
+    create?: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput> | UserOnboardingCreateWithoutInitialPersonaInput[] | UserOnboardingUncheckedCreateWithoutInitialPersonaInput[]
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutInitialPersonaInput | UserOnboardingCreateOrConnectWithoutInitialPersonaInput[]
+    createMany?: UserOnboardingCreateManyInitialPersonaInputEnvelope
+    connect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutChosenPersonaInput = {
+    create?: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput> | UserCreateWithoutChosenPersonaInput[] | UserUncheckedCreateWithoutChosenPersonaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChosenPersonaInput | UserCreateOrConnectWithoutChosenPersonaInput[]
+    createMany?: UserCreateManyChosenPersonaInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserOnboardingUncheckedCreateNestedManyWithoutInitialPersonaInput = {
+    create?: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput> | UserOnboardingCreateWithoutInitialPersonaInput[] | UserOnboardingUncheckedCreateWithoutInitialPersonaInput[]
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutInitialPersonaInput | UserOnboardingCreateOrConnectWithoutInitialPersonaInput[]
+    createMany?: UserOnboardingCreateManyInitialPersonaInputEnvelope
+    connect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+  }
+
+  export type UserPersonaUpdatedefaultIntegrationTypesInput = {
+    set?: $Enums.IntegrationType[]
+    push?: $Enums.IntegrationType | $Enums.IntegrationType[]
+  }
+
+  export type UserUpdateManyWithoutChosenPersonaNestedInput = {
+    create?: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput> | UserCreateWithoutChosenPersonaInput[] | UserUncheckedCreateWithoutChosenPersonaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChosenPersonaInput | UserCreateOrConnectWithoutChosenPersonaInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutChosenPersonaInput | UserUpsertWithWhereUniqueWithoutChosenPersonaInput[]
+    createMany?: UserCreateManyChosenPersonaInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutChosenPersonaInput | UserUpdateWithWhereUniqueWithoutChosenPersonaInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutChosenPersonaInput | UserUpdateManyWithWhereWithoutChosenPersonaInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserOnboardingUpdateManyWithoutInitialPersonaNestedInput = {
+    create?: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput> | UserOnboardingCreateWithoutInitialPersonaInput[] | UserOnboardingUncheckedCreateWithoutInitialPersonaInput[]
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutInitialPersonaInput | UserOnboardingCreateOrConnectWithoutInitialPersonaInput[]
+    upsert?: UserOnboardingUpsertWithWhereUniqueWithoutInitialPersonaInput | UserOnboardingUpsertWithWhereUniqueWithoutInitialPersonaInput[]
+    createMany?: UserOnboardingCreateManyInitialPersonaInputEnvelope
+    set?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    disconnect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    delete?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    connect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    update?: UserOnboardingUpdateWithWhereUniqueWithoutInitialPersonaInput | UserOnboardingUpdateWithWhereUniqueWithoutInitialPersonaInput[]
+    updateMany?: UserOnboardingUpdateManyWithWhereWithoutInitialPersonaInput | UserOnboardingUpdateManyWithWhereWithoutInitialPersonaInput[]
+    deleteMany?: UserOnboardingScalarWhereInput | UserOnboardingScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutChosenPersonaNestedInput = {
+    create?: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput> | UserCreateWithoutChosenPersonaInput[] | UserUncheckedCreateWithoutChosenPersonaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutChosenPersonaInput | UserCreateOrConnectWithoutChosenPersonaInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutChosenPersonaInput | UserUpsertWithWhereUniqueWithoutChosenPersonaInput[]
+    createMany?: UserCreateManyChosenPersonaInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutChosenPersonaInput | UserUpdateWithWhereUniqueWithoutChosenPersonaInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutChosenPersonaInput | UserUpdateManyWithWhereWithoutChosenPersonaInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserOnboardingUncheckedUpdateManyWithoutInitialPersonaNestedInput = {
+    create?: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput> | UserOnboardingCreateWithoutInitialPersonaInput[] | UserOnboardingUncheckedCreateWithoutInitialPersonaInput[]
+    connectOrCreate?: UserOnboardingCreateOrConnectWithoutInitialPersonaInput | UserOnboardingCreateOrConnectWithoutInitialPersonaInput[]
+    upsert?: UserOnboardingUpsertWithWhereUniqueWithoutInitialPersonaInput | UserOnboardingUpsertWithWhereUniqueWithoutInitialPersonaInput[]
+    createMany?: UserOnboardingCreateManyInitialPersonaInputEnvelope
+    set?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    disconnect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    delete?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    connect?: UserOnboardingWhereUniqueInput | UserOnboardingWhereUniqueInput[]
+    update?: UserOnboardingUpdateWithWhereUniqueWithoutInitialPersonaInput | UserOnboardingUpdateWithWhereUniqueWithoutInitialPersonaInput[]
+    updateMany?: UserOnboardingUpdateManyWithWhereWithoutInitialPersonaInput | UserOnboardingUpdateManyWithWhereWithoutInitialPersonaInput[]
+    deleteMany?: UserOnboardingScalarWhereInput | UserOnboardingScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutOnboardingInput = {
+    create?: XOR<UserCreateWithoutOnboardingInput, UserUncheckedCreateWithoutOnboardingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOnboardingInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserPersonaCreateNestedOneWithoutOnboardingsWithThisInitialPersonaInput = {
+    create?: XOR<UserPersonaCreateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedCreateWithoutOnboardingsWithThisInitialPersonaInput>
+    connectOrCreate?: UserPersonaCreateOrConnectWithoutOnboardingsWithThisInitialPersonaInput
+    connect?: UserPersonaWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutOnboardingNestedInput = {
+    create?: XOR<UserCreateWithoutOnboardingInput, UserUncheckedCreateWithoutOnboardingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOnboardingInput
+    upsert?: UserUpsertWithoutOnboardingInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOnboardingInput, UserUpdateWithoutOnboardingInput>, UserUncheckedUpdateWithoutOnboardingInput>
+  }
+
+  export type UserPersonaUpdateOneWithoutOnboardingsWithThisInitialPersonaNestedInput = {
+    create?: XOR<UserPersonaCreateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedCreateWithoutOnboardingsWithThisInitialPersonaInput>
+    connectOrCreate?: UserPersonaCreateOrConnectWithoutOnboardingsWithThisInitialPersonaInput
+    upsert?: UserPersonaUpsertWithoutOnboardingsWithThisInitialPersonaInput
+    disconnect?: UserPersonaWhereInput | boolean
+    delete?: UserPersonaWhereInput | boolean
+    connect?: UserPersonaWhereUniqueInput
+    update?: XOR<XOR<UserPersonaUpdateToOneWithWhereWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUpdateWithoutOnboardingsWithThisInitialPersonaInput>, UserPersonaUncheckedUpdateWithoutOnboardingsWithThisInitialPersonaInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4369,6 +7542,19 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type IntegrationCreateWithoutUserInput = {
     id?: string
     type: $Enums.IntegrationType
@@ -4403,6 +7589,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserOnboardingCreateWithoutUserInput = {
+    id?: string
+    onboardingId: string
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    initialPersona?: UserPersonaCreateNestedOneWithoutOnboardingsWithThisInitialPersonaInput
+  }
+
+  export type UserOnboardingUncheckedCreateWithoutUserInput = {
+    id?: string
+    onboardingId: string
+    initialPersonaId?: string | null
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserOnboardingCreateOrConnectWithoutUserInput = {
+    where: UserOnboardingWhereUniqueInput
+    create: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserPersonaCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingsWithThisInitialPersona?: UserOnboardingCreateNestedManyWithoutInitialPersonaInput
+  }
+
+  export type UserPersonaUncheckedCreateWithoutUsersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingsWithThisInitialPersona?: UserOnboardingUncheckedCreateNestedManyWithoutInitialPersonaInput
+  }
+
+  export type UserPersonaCreateOrConnectWithoutUsersInput = {
+    where: UserPersonaWhereUniqueInput
+    create: XOR<UserPersonaCreateWithoutUsersInput, UserPersonaUncheckedCreateWithoutUsersInput>
+  }
+
   export type IntegrationUpsertWithWhereUniqueWithoutUserInput = {
     where: IntegrationWhereUniqueInput
     update: XOR<IntegrationUpdateWithoutUserInput, IntegrationUncheckedUpdateWithoutUserInput>
@@ -4435,6 +7673,70 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Integration"> | Date | string
   }
 
+  export type UserOnboardingUpsertWithoutUserInput = {
+    update: XOR<UserOnboardingUpdateWithoutUserInput, UserOnboardingUncheckedUpdateWithoutUserInput>
+    create: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
+    where?: UserOnboardingWhereInput
+  }
+
+  export type UserOnboardingUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserOnboardingWhereInput
+    data: XOR<UserOnboardingUpdateWithoutUserInput, UserOnboardingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserOnboardingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    initialPersona?: UserPersonaUpdateOneWithoutOnboardingsWithThisInitialPersonaNestedInput
+  }
+
+  export type UserOnboardingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    initialPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserPersonaUpsertWithoutUsersInput = {
+    update: XOR<UserPersonaUpdateWithoutUsersInput, UserPersonaUncheckedUpdateWithoutUsersInput>
+    create: XOR<UserPersonaCreateWithoutUsersInput, UserPersonaUncheckedCreateWithoutUsersInput>
+    where?: UserPersonaWhereInput
+  }
+
+  export type UserPersonaUpdateToOneWithWhereWithoutUsersInput = {
+    where?: UserPersonaWhereInput
+    data: XOR<UserPersonaUpdateWithoutUsersInput, UserPersonaUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type UserPersonaUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingsWithThisInitialPersona?: UserOnboardingUpdateManyWithoutInitialPersonaNestedInput
+  }
+
+  export type UserPersonaUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingsWithThisInitialPersona?: UserOnboardingUncheckedUpdateManyWithoutInitialPersonaNestedInput
+  }
+
   export type UserCreateWithoutIntegrationsInput = {
     id?: string
     email: string
@@ -4446,6 +7748,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
+    onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
+    chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutIntegrationsInput = {
@@ -4456,9 +7760,11 @@ export namespace Prisma {
     lastName?: string | null
     picture?: string | null
     googleId?: string | null
+    chosenPersonaId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
+    onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutIntegrationsInput = {
@@ -4488,6 +7794,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
+    chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutIntegrationsInput = {
@@ -4498,9 +7806,279 @@ export namespace Prisma {
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    chosenPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutChosenPersonaInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutChosenPersonaInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutChosenPersonaInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput>
+  }
+
+  export type UserCreateManyChosenPersonaInputEnvelope = {
+    data: UserCreateManyChosenPersonaInput | UserCreateManyChosenPersonaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserOnboardingCreateWithoutInitialPersonaInput = {
+    id?: string
+    onboardingId: string
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutOnboardingInput
+  }
+
+  export type UserOnboardingUncheckedCreateWithoutInitialPersonaInput = {
+    id?: string
+    userId: string
+    onboardingId: string
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserOnboardingCreateOrConnectWithoutInitialPersonaInput = {
+    where: UserOnboardingWhereUniqueInput
+    create: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput>
+  }
+
+  export type UserOnboardingCreateManyInitialPersonaInputEnvelope = {
+    data: UserOnboardingCreateManyInitialPersonaInput | UserOnboardingCreateManyInitialPersonaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutChosenPersonaInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutChosenPersonaInput, UserUncheckedUpdateWithoutChosenPersonaInput>
+    create: XOR<UserCreateWithoutChosenPersonaInput, UserUncheckedCreateWithoutChosenPersonaInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutChosenPersonaInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutChosenPersonaInput, UserUncheckedUpdateWithoutChosenPersonaInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutChosenPersonaInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutChosenPersonaInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
+    picture?: StringNullableFilter<"User"> | string | null
+    googleId?: StringNullableFilter<"User"> | string | null
+    chosenPersonaId?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+  }
+
+  export type UserOnboardingUpsertWithWhereUniqueWithoutInitialPersonaInput = {
+    where: UserOnboardingWhereUniqueInput
+    update: XOR<UserOnboardingUpdateWithoutInitialPersonaInput, UserOnboardingUncheckedUpdateWithoutInitialPersonaInput>
+    create: XOR<UserOnboardingCreateWithoutInitialPersonaInput, UserOnboardingUncheckedCreateWithoutInitialPersonaInput>
+  }
+
+  export type UserOnboardingUpdateWithWhereUniqueWithoutInitialPersonaInput = {
+    where: UserOnboardingWhereUniqueInput
+    data: XOR<UserOnboardingUpdateWithoutInitialPersonaInput, UserOnboardingUncheckedUpdateWithoutInitialPersonaInput>
+  }
+
+  export type UserOnboardingUpdateManyWithWhereWithoutInitialPersonaInput = {
+    where: UserOnboardingScalarWhereInput
+    data: XOR<UserOnboardingUpdateManyMutationInput, UserOnboardingUncheckedUpdateManyWithoutInitialPersonaInput>
+  }
+
+  export type UserOnboardingScalarWhereInput = {
+    AND?: UserOnboardingScalarWhereInput | UserOnboardingScalarWhereInput[]
+    OR?: UserOnboardingScalarWhereInput[]
+    NOT?: UserOnboardingScalarWhereInput | UserOnboardingScalarWhereInput[]
+    id?: StringFilter<"UserOnboarding"> | string
+    userId?: StringFilter<"UserOnboarding"> | string
+    onboardingId?: StringFilter<"UserOnboarding"> | string
+    initialPersonaId?: StringNullableFilter<"UserOnboarding"> | string | null
+    completed?: BoolFilter<"UserOnboarding"> | boolean
+    currentStep?: StringNullableFilter<"UserOnboarding"> | string | null
+    onboardingData?: JsonNullableFilter<"UserOnboarding">
+    createdAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+    updatedAt?: DateTimeFilter<"UserOnboarding"> | Date | string
+  }
+
+  export type UserCreateWithoutOnboardingInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationCreateNestedManyWithoutUserInput
+    chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutOnboardingInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    chosenPersonaId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutOnboardingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutOnboardingInput, UserUncheckedCreateWithoutOnboardingInput>
+  }
+
+  export type UserPersonaCreateWithoutOnboardingsWithThisInitialPersonaInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutChosenPersonaInput
+  }
+
+  export type UserPersonaUncheckedCreateWithoutOnboardingsWithThisInitialPersonaInput = {
+    id?: string
+    name: string
+    description?: string | null
+    defaultIntegrationTypes?: UserPersonaCreatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutChosenPersonaInput
+  }
+
+  export type UserPersonaCreateOrConnectWithoutOnboardingsWithThisInitialPersonaInput = {
+    where: UserPersonaWhereUniqueInput
+    create: XOR<UserPersonaCreateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedCreateWithoutOnboardingsWithThisInitialPersonaInput>
+  }
+
+  export type UserUpsertWithoutOnboardingInput = {
+    update: XOR<UserUpdateWithoutOnboardingInput, UserUncheckedUpdateWithoutOnboardingInput>
+    create: XOR<UserCreateWithoutOnboardingInput, UserUncheckedCreateWithoutOnboardingInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutOnboardingInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutOnboardingInput, UserUncheckedUpdateWithoutOnboardingInput>
+  }
+
+  export type UserUpdateWithoutOnboardingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUpdateManyWithoutUserNestedInput
+    chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutOnboardingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    chosenPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserPersonaUpsertWithoutOnboardingsWithThisInitialPersonaInput = {
+    update: XOR<UserPersonaUpdateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedUpdateWithoutOnboardingsWithThisInitialPersonaInput>
+    create: XOR<UserPersonaCreateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedCreateWithoutOnboardingsWithThisInitialPersonaInput>
+    where?: UserPersonaWhereInput
+  }
+
+  export type UserPersonaUpdateToOneWithWhereWithoutOnboardingsWithThisInitialPersonaInput = {
+    where?: UserPersonaWhereInput
+    data: XOR<UserPersonaUpdateWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUncheckedUpdateWithoutOnboardingsWithThisInitialPersonaInput>
+  }
+
+  export type UserPersonaUpdateWithoutOnboardingsWithThisInitialPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutChosenPersonaNestedInput
+  }
+
+  export type UserPersonaUncheckedUpdateWithoutOnboardingsWithThisInitialPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultIntegrationTypes?: UserPersonaUpdatedefaultIntegrationTypesInput | $Enums.IntegrationType[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutChosenPersonaNestedInput
   }
 
   export type IntegrationCreateManyUserInput = {
@@ -4547,6 +8125,106 @@ export namespace Prisma {
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateManyChosenPersonaInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+  }
+
+  export type UserOnboardingCreateManyInitialPersonaInput = {
+    id?: string
+    userId: string
+    onboardingId: string
+    completed?: boolean
+    currentStep?: string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateWithoutChosenPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChosenPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutChosenPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type UserOnboardingUpdateWithoutInitialPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOnboardingNestedInput
+  }
+
+  export type UserOnboardingUncheckedUpdateWithoutInitialPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserOnboardingUncheckedUpdateManyWithoutInitialPersonaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    onboardingId?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    currentStep?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

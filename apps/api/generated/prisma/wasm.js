@@ -128,6 +128,7 @@ exports.Prisma.UserScalarFieldEnum = {
   lastName: 'lastName',
   picture: 'picture',
   googleId: 'googleId',
+  chosenPersonaId: 'chosenPersonaId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   role: 'role'
@@ -142,6 +143,27 @@ exports.Prisma.IntegrationScalarFieldEnum = {
   lastSync: 'lastSync',
   externalId: 'externalId',
   metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserPersonaScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  defaultIntegrationTypes: 'defaultIntegrationTypes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserOnboardingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  onboardingId: 'onboardingId',
+  initialPersonaId: 'initialPersonaId',
+  completed: 'completed',
+  currentStep: 'currentStep',
+  onboardingData: 'onboardingData',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -183,7 +205,9 @@ exports.IntegrationType = exports.$Enums.IntegrationType = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Integration: 'Integration'
+  Integration: 'Integration',
+  UserPersona: 'UserPersona',
+  UserOnboarding: 'UserOnboarding'
 };
 
 /**

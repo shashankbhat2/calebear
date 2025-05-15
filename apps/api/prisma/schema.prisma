@@ -35,6 +35,10 @@ model User {
   googleId  String?  @unique // To store Google user ID
 
   integrations Integration[] // Relation to Integrations
+  onboarding   UserOnboarding? // Relation to UserOnboarding
+
+  chosenPersonaId String?
+  chosenPersona   UserPersona?    @relation(fields: [chosenPersonaId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -60,5 +64,38 @@ model Integration {
 
   @@unique([userId, type]) // A user can have only one integration of a certain type
   @@index([userId])
+}
+
+model UserPersona {
+  id                      String            @id @default(cuid())
+  name                    String            @unique
+  description             String?
+  defaultIntegrationTypes IntegrationType[] // List of default integrations for this persona
+  users                   User[]            // Users who have chosen this persona
+  onboardingsWithThisInitialPersona UserOnboarding[] @relation("InitialPersonaForOnboarding") // Onboardings that started with this persona
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+
+  @@map("user_personas")
+}
+
+model UserOnboarding {
+  id           String    @id @default(cuid())
+  userId       String    @unique // Enforces 1:1 relationship with User
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  onboardingId String // This might be a specific onboarding flow ID if you have multiple
+
+  initialPersonaId String?    @map("initial_persona_id")
+  initialPersona   UserPersona? @relation("InitialPersonaForOnboarding", fields: [initialPersonaId], references: [id], onDelete: SetNull)
+
+  completed    Boolean   @default(false)
+  currentStep  String?
+  onboardingData Json?      // Flexible field for onboarding-specific data
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("user_onboardings")
+  @@index([initialPersonaId])
 }
 
