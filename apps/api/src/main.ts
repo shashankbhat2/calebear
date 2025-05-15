@@ -18,8 +18,6 @@ async function bootstrap() {
     .setTitle('Clevercal API')
     .setDescription('The official API for Clevercal services')
     .setVersion('1.0')
-    // .addTag('auth') // Example: Add a tag for grouping endpoints
-    // .addTag('users') // Example: Add another tag
     .addBearerAuth() // If you have JWT Bearer auth, this adds the Authorize button
     .build();
   const document = SwaggerModule.createDocument(app, config);

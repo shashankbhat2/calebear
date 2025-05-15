@@ -4,9 +4,9 @@ services:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: calbearadmin # Replace with your desired username
-      POSTGRES_PASSWORD: calebear123 # Replace with your desired password
-      POSTGRES_DB: calebear # Replace with your desired database name
+      POSTGRES_USER: clevercal 
+      POSTGRES_PASSWORD: clevercal
+      POSTGRES_DB: clevercal 
     ports:
       - "5432:5432"
     volumes:

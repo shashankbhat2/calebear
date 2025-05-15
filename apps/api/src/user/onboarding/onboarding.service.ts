@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserOnboarding, Prisma } from 'generated/prisma';
+import { Prisma } from 'generated/prisma';
+import { UpdateOnboardingDto } from 'src/dto/onboarding.dto';
 
 @Injectable()
 export class OnboardingService {
@@ -24,10 +25,10 @@ export class OnboardingService {
         return onboarding?.currentStep;
     }
 
-    async updateOnboarding(userId: string, data: Partial<UserOnboarding>) {
+    async updateOnboarding(userId: string, data: UpdateOnboardingDto) {
         return this.prisma.userOnboarding.update({
             where: { userId },
-            data: data as any,
+            data: data,
         });
     }
 }

@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model IntegrationProvider
+ * 
+ */
+export type IntegrationProvider = $Result.DefaultSelection<Prisma.$IntegrationProviderPayload>
+/**
  * Model Integration
  * 
  */
@@ -33,13 +38,20 @@ export type UserPersona = $Result.DefaultSelection<Prisma.$UserPersonaPayload>
  * 
  */
 export type UserOnboarding = $Result.DefaultSelection<Prisma.$UserOnboardingPayload>
+/**
+ * Model DestinationCalendar
+ * 
+ */
+export type DestinationCalendar = $Result.DefaultSelection<Prisma.$DestinationCalendarPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const IntegrationType: {
-  GOOGLE_CALENDAR: 'GOOGLE_CALENDAR'
+  CALENDAR: 'CALENDAR',
+  CONFERENCING: 'CONFERENCING',
+  PAYMENT: 'PAYMENT'
 };
 
 export type IntegrationType = (typeof IntegrationType)[keyof typeof IntegrationType]
@@ -199,6 +211,16 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.integrationProvider`: Exposes CRUD operations for the **IntegrationProvider** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IntegrationProviders
+    * const integrationProviders = await prisma.integrationProvider.findMany()
+    * ```
+    */
+  get integrationProvider(): Prisma.IntegrationProviderDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.integration`: Exposes CRUD operations for the **Integration** model.
     * Example usage:
     * ```ts
@@ -227,6 +249,16 @@ export class PrismaClient<
     * ```
     */
   get userOnboarding(): Prisma.UserOnboardingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.destinationCalendar`: Exposes CRUD operations for the **DestinationCalendar** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DestinationCalendars
+    * const destinationCalendars = await prisma.destinationCalendar.findMany()
+    * ```
+    */
+  get destinationCalendar(): Prisma.DestinationCalendarDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -668,9 +700,11 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    IntegrationProvider: 'IntegrationProvider',
     Integration: 'Integration',
     UserPersona: 'UserPersona',
-    UserOnboarding: 'UserOnboarding'
+    UserOnboarding: 'UserOnboarding',
+    DestinationCalendar: 'DestinationCalendar'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -689,7 +723,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "integration" | "userPersona" | "userOnboarding"
+      modelProps: "user" | "integrationProvider" | "integration" | "userPersona" | "userOnboarding" | "destinationCalendar"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -764,6 +798,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      IntegrationProvider: {
+        payload: Prisma.$IntegrationProviderPayload<ExtArgs>
+        fields: Prisma.IntegrationProviderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IntegrationProviderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IntegrationProviderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          findFirst: {
+            args: Prisma.IntegrationProviderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IntegrationProviderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          findMany: {
+            args: Prisma.IntegrationProviderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>[]
+          }
+          create: {
+            args: Prisma.IntegrationProviderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          createMany: {
+            args: Prisma.IntegrationProviderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IntegrationProviderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>[]
+          }
+          delete: {
+            args: Prisma.IntegrationProviderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          update: {
+            args: Prisma.IntegrationProviderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          deleteMany: {
+            args: Prisma.IntegrationProviderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IntegrationProviderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IntegrationProviderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>[]
+          }
+          upsert: {
+            args: Prisma.IntegrationProviderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationProviderPayload>
+          }
+          aggregate: {
+            args: Prisma.IntegrationProviderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIntegrationProvider>
+          }
+          groupBy: {
+            args: Prisma.IntegrationProviderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IntegrationProviderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IntegrationProviderCountArgs<ExtArgs>
+            result: $Utils.Optional<IntegrationProviderCountAggregateOutputType> | number
           }
         }
       }
@@ -989,6 +1097,80 @@ export namespace Prisma {
           }
         }
       }
+      DestinationCalendar: {
+        payload: Prisma.$DestinationCalendarPayload<ExtArgs>
+        fields: Prisma.DestinationCalendarFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DestinationCalendarFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DestinationCalendarFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          findFirst: {
+            args: Prisma.DestinationCalendarFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DestinationCalendarFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          findMany: {
+            args: Prisma.DestinationCalendarFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>[]
+          }
+          create: {
+            args: Prisma.DestinationCalendarCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          createMany: {
+            args: Prisma.DestinationCalendarCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DestinationCalendarCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>[]
+          }
+          delete: {
+            args: Prisma.DestinationCalendarDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          update: {
+            args: Prisma.DestinationCalendarUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          deleteMany: {
+            args: Prisma.DestinationCalendarDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DestinationCalendarUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DestinationCalendarUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>[]
+          }
+          upsert: {
+            args: Prisma.DestinationCalendarUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCalendarPayload>
+          }
+          aggregate: {
+            args: Prisma.DestinationCalendarAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDestinationCalendar>
+          }
+          groupBy: {
+            args: Prisma.DestinationCalendarGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCalendarGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DestinationCalendarCountArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCalendarCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1074,9 +1256,11 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    integrationProvider?: IntegrationProviderOmit
     integration?: IntegrationOmit
     userPersona?: UserPersonaOmit
     userOnboarding?: UserOnboardingOmit
+    destinationCalendar?: DestinationCalendarOmit
   }
 
   /* Types for Logging */
@@ -1172,10 +1356,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     integrations: number
+    destinationCalendars: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     integrations?: boolean | UserCountOutputTypeCountIntegrationsArgs
+    destinationCalendars?: boolean | UserCountOutputTypeCountDestinationCalendarsArgs
   }
 
   // Custom InputTypes
@@ -1194,6 +1380,75 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountIntegrationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: IntegrationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountDestinationCalendarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCalendarWhereInput
+  }
+
+
+  /**
+   * Count Type IntegrationProviderCountOutputType
+   */
+
+  export type IntegrationProviderCountOutputType = {
+    integrations: number
+  }
+
+  export type IntegrationProviderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    integrations?: boolean | IntegrationProviderCountOutputTypeCountIntegrationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IntegrationProviderCountOutputType without action
+   */
+  export type IntegrationProviderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProviderCountOutputType
+     */
+    select?: IntegrationProviderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IntegrationProviderCountOutputType without action
+   */
+  export type IntegrationProviderCountOutputTypeCountIntegrationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IntegrationWhereInput
+  }
+
+
+  /**
+   * Count Type IntegrationCountOutputType
+   */
+
+  export type IntegrationCountOutputType = {
+    destinationCalendars: number
+  }
+
+  export type IntegrationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinationCalendars?: boolean | IntegrationCountOutputTypeCountDestinationCalendarsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IntegrationCountOutputType without action
+   */
+  export type IntegrationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationCountOutputType
+     */
+    select?: IntegrationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IntegrationCountOutputType without action
+   */
+  export type IntegrationCountOutputTypeCountDestinationCalendarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCalendarWhereInput
   }
 
 
@@ -1456,6 +1711,7 @@ export namespace Prisma {
     integrations?: boolean | User$integrationsArgs<ExtArgs>
     onboarding?: boolean | User$onboardingArgs<ExtArgs>
     chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
+    destinationCalendars?: boolean | User$destinationCalendarsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1508,6 +1764,7 @@ export namespace Prisma {
     integrations?: boolean | User$integrationsArgs<ExtArgs>
     onboarding?: boolean | User$onboardingArgs<ExtArgs>
     chosenPersona?: boolean | User$chosenPersonaArgs<ExtArgs>
+    destinationCalendars?: boolean | User$destinationCalendarsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1523,6 +1780,7 @@ export namespace Prisma {
       integrations: Prisma.$IntegrationPayload<ExtArgs>[]
       onboarding: Prisma.$UserOnboardingPayload<ExtArgs> | null
       chosenPersona: Prisma.$UserPersonaPayload<ExtArgs> | null
+      destinationCalendars: Prisma.$DestinationCalendarPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1933,6 +2191,7 @@ export namespace Prisma {
     integrations<T extends User$integrationsArgs<ExtArgs> = {}>(args?: Subset<T, User$integrationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     onboarding<T extends User$onboardingArgs<ExtArgs> = {}>(args?: Subset<T, User$onboardingArgs<ExtArgs>>): Prisma__UserOnboardingClient<$Result.GetResult<Prisma.$UserOnboardingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     chosenPersona<T extends User$chosenPersonaArgs<ExtArgs> = {}>(args?: Subset<T, User$chosenPersonaArgs<ExtArgs>>): Prisma__UserPersonaClient<$Result.GetResult<Prisma.$UserPersonaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    destinationCalendars<T extends User$destinationCalendarsArgs<ExtArgs> = {}>(args?: Subset<T, User$destinationCalendarsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2431,6 +2690,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.destinationCalendars
+   */
+  export type User$destinationCalendarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    where?: DestinationCalendarWhereInput
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    cursor?: DestinationCalendarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationCalendarScalarFieldEnum | DestinationCalendarScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2450,6 +2733,1141 @@ export namespace Prisma {
 
 
   /**
+   * Model IntegrationProvider
+   */
+
+  export type AggregateIntegrationProvider = {
+    _count: IntegrationProviderCountAggregateOutputType | null
+    _min: IntegrationProviderMinAggregateOutputType | null
+    _max: IntegrationProviderMaxAggregateOutputType | null
+  }
+
+  export type IntegrationProviderMinAggregateOutputType = {
+    id: string | null
+    providerKey: string | null
+    displayName: string | null
+    description: string | null
+    logoUrl: string | null
+    type: $Enums.IntegrationType | null
+    isEnabled: boolean | null
+    isBeta: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IntegrationProviderMaxAggregateOutputType = {
+    id: string | null
+    providerKey: string | null
+    displayName: string | null
+    description: string | null
+    logoUrl: string | null
+    type: $Enums.IntegrationType | null
+    isEnabled: boolean | null
+    isBeta: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IntegrationProviderCountAggregateOutputType = {
+    id: number
+    providerKey: number
+    displayName: number
+    description: number
+    logoUrl: number
+    type: number
+    isEnabled: number
+    isBeta: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type IntegrationProviderMinAggregateInputType = {
+    id?: true
+    providerKey?: true
+    displayName?: true
+    description?: true
+    logoUrl?: true
+    type?: true
+    isEnabled?: true
+    isBeta?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IntegrationProviderMaxAggregateInputType = {
+    id?: true
+    providerKey?: true
+    displayName?: true
+    description?: true
+    logoUrl?: true
+    type?: true
+    isEnabled?: true
+    isBeta?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IntegrationProviderCountAggregateInputType = {
+    id?: true
+    providerKey?: true
+    displayName?: true
+    description?: true
+    logoUrl?: true
+    type?: true
+    isEnabled?: true
+    isBeta?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type IntegrationProviderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegrationProvider to aggregate.
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationProviders to fetch.
+     */
+    orderBy?: IntegrationProviderOrderByWithRelationInput | IntegrationProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IntegrationProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationProviders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationProviders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned IntegrationProviders
+    **/
+    _count?: true | IntegrationProviderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IntegrationProviderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IntegrationProviderMaxAggregateInputType
+  }
+
+  export type GetIntegrationProviderAggregateType<T extends IntegrationProviderAggregateArgs> = {
+        [P in keyof T & keyof AggregateIntegrationProvider]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIntegrationProvider[P]>
+      : GetScalarType<T[P], AggregateIntegrationProvider[P]>
+  }
+
+
+
+
+  export type IntegrationProviderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IntegrationProviderWhereInput
+    orderBy?: IntegrationProviderOrderByWithAggregationInput | IntegrationProviderOrderByWithAggregationInput[]
+    by: IntegrationProviderScalarFieldEnum[] | IntegrationProviderScalarFieldEnum
+    having?: IntegrationProviderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IntegrationProviderCountAggregateInputType | true
+    _min?: IntegrationProviderMinAggregateInputType
+    _max?: IntegrationProviderMaxAggregateInputType
+  }
+
+  export type IntegrationProviderGroupByOutputType = {
+    id: string
+    providerKey: string
+    displayName: string
+    description: string | null
+    logoUrl: string | null
+    type: $Enums.IntegrationType
+    isEnabled: boolean
+    isBeta: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: IntegrationProviderCountAggregateOutputType | null
+    _min: IntegrationProviderMinAggregateOutputType | null
+    _max: IntegrationProviderMaxAggregateOutputType | null
+  }
+
+  type GetIntegrationProviderGroupByPayload<T extends IntegrationProviderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IntegrationProviderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IntegrationProviderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IntegrationProviderGroupByOutputType[P]>
+            : GetScalarType<T[P], IntegrationProviderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IntegrationProviderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    providerKey?: boolean
+    displayName?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    type?: boolean
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    integrations?: boolean | IntegrationProvider$integrationsArgs<ExtArgs>
+    _count?: boolean | IntegrationProviderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["integrationProvider"]>
+
+  export type IntegrationProviderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    providerKey?: boolean
+    displayName?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    type?: boolean
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["integrationProvider"]>
+
+  export type IntegrationProviderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    providerKey?: boolean
+    displayName?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    type?: boolean
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["integrationProvider"]>
+
+  export type IntegrationProviderSelectScalar = {
+    id?: boolean
+    providerKey?: boolean
+    displayName?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    type?: boolean
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type IntegrationProviderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "providerKey" | "displayName" | "description" | "logoUrl" | "type" | "isEnabled" | "isBeta" | "createdAt" | "updatedAt", ExtArgs["result"]["integrationProvider"]>
+  export type IntegrationProviderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    integrations?: boolean | IntegrationProvider$integrationsArgs<ExtArgs>
+    _count?: boolean | IntegrationProviderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type IntegrationProviderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type IntegrationProviderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $IntegrationProviderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IntegrationProvider"
+    objects: {
+      integrations: Prisma.$IntegrationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      providerKey: string
+      displayName: string
+      description: string | null
+      logoUrl: string | null
+      type: $Enums.IntegrationType
+      isEnabled: boolean
+      isBeta: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["integrationProvider"]>
+    composites: {}
+  }
+
+  type IntegrationProviderGetPayload<S extends boolean | null | undefined | IntegrationProviderDefaultArgs> = $Result.GetResult<Prisma.$IntegrationProviderPayload, S>
+
+  type IntegrationProviderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IntegrationProviderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IntegrationProviderCountAggregateInputType | true
+    }
+
+  export interface IntegrationProviderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IntegrationProvider'], meta: { name: 'IntegrationProvider' } }
+    /**
+     * Find zero or one IntegrationProvider that matches the filter.
+     * @param {IntegrationProviderFindUniqueArgs} args - Arguments to find a IntegrationProvider
+     * @example
+     * // Get one IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IntegrationProviderFindUniqueArgs>(args: SelectSubset<T, IntegrationProviderFindUniqueArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one IntegrationProvider that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IntegrationProviderFindUniqueOrThrowArgs} args - Arguments to find a IntegrationProvider
+     * @example
+     * // Get one IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IntegrationProviderFindUniqueOrThrowArgs>(args: SelectSubset<T, IntegrationProviderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegrationProvider that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderFindFirstArgs} args - Arguments to find a IntegrationProvider
+     * @example
+     * // Get one IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IntegrationProviderFindFirstArgs>(args?: SelectSubset<T, IntegrationProviderFindFirstArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegrationProvider that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderFindFirstOrThrowArgs} args - Arguments to find a IntegrationProvider
+     * @example
+     * // Get one IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IntegrationProviderFindFirstOrThrowArgs>(args?: SelectSubset<T, IntegrationProviderFindFirstOrThrowArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more IntegrationProviders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IntegrationProviders
+     * const integrationProviders = await prisma.integrationProvider.findMany()
+     * 
+     * // Get first 10 IntegrationProviders
+     * const integrationProviders = await prisma.integrationProvider.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const integrationProviderWithIdOnly = await prisma.integrationProvider.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IntegrationProviderFindManyArgs>(args?: SelectSubset<T, IntegrationProviderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a IntegrationProvider.
+     * @param {IntegrationProviderCreateArgs} args - Arguments to create a IntegrationProvider.
+     * @example
+     * // Create one IntegrationProvider
+     * const IntegrationProvider = await prisma.integrationProvider.create({
+     *   data: {
+     *     // ... data to create a IntegrationProvider
+     *   }
+     * })
+     * 
+     */
+    create<T extends IntegrationProviderCreateArgs>(args: SelectSubset<T, IntegrationProviderCreateArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many IntegrationProviders.
+     * @param {IntegrationProviderCreateManyArgs} args - Arguments to create many IntegrationProviders.
+     * @example
+     * // Create many IntegrationProviders
+     * const integrationProvider = await prisma.integrationProvider.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IntegrationProviderCreateManyArgs>(args?: SelectSubset<T, IntegrationProviderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many IntegrationProviders and returns the data saved in the database.
+     * @param {IntegrationProviderCreateManyAndReturnArgs} args - Arguments to create many IntegrationProviders.
+     * @example
+     * // Create many IntegrationProviders
+     * const integrationProvider = await prisma.integrationProvider.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many IntegrationProviders and only return the `id`
+     * const integrationProviderWithIdOnly = await prisma.integrationProvider.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IntegrationProviderCreateManyAndReturnArgs>(args?: SelectSubset<T, IntegrationProviderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a IntegrationProvider.
+     * @param {IntegrationProviderDeleteArgs} args - Arguments to delete one IntegrationProvider.
+     * @example
+     * // Delete one IntegrationProvider
+     * const IntegrationProvider = await prisma.integrationProvider.delete({
+     *   where: {
+     *     // ... filter to delete one IntegrationProvider
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IntegrationProviderDeleteArgs>(args: SelectSubset<T, IntegrationProviderDeleteArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one IntegrationProvider.
+     * @param {IntegrationProviderUpdateArgs} args - Arguments to update one IntegrationProvider.
+     * @example
+     * // Update one IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IntegrationProviderUpdateArgs>(args: SelectSubset<T, IntegrationProviderUpdateArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more IntegrationProviders.
+     * @param {IntegrationProviderDeleteManyArgs} args - Arguments to filter IntegrationProviders to delete.
+     * @example
+     * // Delete a few IntegrationProviders
+     * const { count } = await prisma.integrationProvider.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IntegrationProviderDeleteManyArgs>(args?: SelectSubset<T, IntegrationProviderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegrationProviders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IntegrationProviders
+     * const integrationProvider = await prisma.integrationProvider.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IntegrationProviderUpdateManyArgs>(args: SelectSubset<T, IntegrationProviderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegrationProviders and returns the data updated in the database.
+     * @param {IntegrationProviderUpdateManyAndReturnArgs} args - Arguments to update many IntegrationProviders.
+     * @example
+     * // Update many IntegrationProviders
+     * const integrationProvider = await prisma.integrationProvider.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more IntegrationProviders and only return the `id`
+     * const integrationProviderWithIdOnly = await prisma.integrationProvider.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IntegrationProviderUpdateManyAndReturnArgs>(args: SelectSubset<T, IntegrationProviderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one IntegrationProvider.
+     * @param {IntegrationProviderUpsertArgs} args - Arguments to update or create a IntegrationProvider.
+     * @example
+     * // Update or create a IntegrationProvider
+     * const integrationProvider = await prisma.integrationProvider.upsert({
+     *   create: {
+     *     // ... data to create a IntegrationProvider
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IntegrationProvider we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IntegrationProviderUpsertArgs>(args: SelectSubset<T, IntegrationProviderUpsertArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of IntegrationProviders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderCountArgs} args - Arguments to filter IntegrationProviders to count.
+     * @example
+     * // Count the number of IntegrationProviders
+     * const count = await prisma.integrationProvider.count({
+     *   where: {
+     *     // ... the filter for the IntegrationProviders we want to count
+     *   }
+     * })
+    **/
+    count<T extends IntegrationProviderCountArgs>(
+      args?: Subset<T, IntegrationProviderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IntegrationProviderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IntegrationProvider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IntegrationProviderAggregateArgs>(args: Subset<T, IntegrationProviderAggregateArgs>): Prisma.PrismaPromise<GetIntegrationProviderAggregateType<T>>
+
+    /**
+     * Group by IntegrationProvider.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationProviderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IntegrationProviderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IntegrationProviderGroupByArgs['orderBy'] }
+        : { orderBy?: IntegrationProviderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IntegrationProviderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIntegrationProviderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IntegrationProvider model
+   */
+  readonly fields: IntegrationProviderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IntegrationProvider.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IntegrationProviderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    integrations<T extends IntegrationProvider$integrationsArgs<ExtArgs> = {}>(args?: Subset<T, IntegrationProvider$integrationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IntegrationProvider model
+   */
+  interface IntegrationProviderFieldRefs {
+    readonly id: FieldRef<"IntegrationProvider", 'String'>
+    readonly providerKey: FieldRef<"IntegrationProvider", 'String'>
+    readonly displayName: FieldRef<"IntegrationProvider", 'String'>
+    readonly description: FieldRef<"IntegrationProvider", 'String'>
+    readonly logoUrl: FieldRef<"IntegrationProvider", 'String'>
+    readonly type: FieldRef<"IntegrationProvider", 'IntegrationType'>
+    readonly isEnabled: FieldRef<"IntegrationProvider", 'Boolean'>
+    readonly isBeta: FieldRef<"IntegrationProvider", 'Boolean'>
+    readonly createdAt: FieldRef<"IntegrationProvider", 'DateTime'>
+    readonly updatedAt: FieldRef<"IntegrationProvider", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * IntegrationProvider findUnique
+   */
+  export type IntegrationProviderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegrationProvider to fetch.
+     */
+    where: IntegrationProviderWhereUniqueInput
+  }
+
+  /**
+   * IntegrationProvider findUniqueOrThrow
+   */
+  export type IntegrationProviderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegrationProvider to fetch.
+     */
+    where: IntegrationProviderWhereUniqueInput
+  }
+
+  /**
+   * IntegrationProvider findFirst
+   */
+  export type IntegrationProviderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegrationProvider to fetch.
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationProviders to fetch.
+     */
+    orderBy?: IntegrationProviderOrderByWithRelationInput | IntegrationProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IntegrationProviders.
+     */
+    cursor?: IntegrationProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationProviders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationProviders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IntegrationProviders.
+     */
+    distinct?: IntegrationProviderScalarFieldEnum | IntegrationProviderScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationProvider findFirstOrThrow
+   */
+  export type IntegrationProviderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegrationProvider to fetch.
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationProviders to fetch.
+     */
+    orderBy?: IntegrationProviderOrderByWithRelationInput | IntegrationProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IntegrationProviders.
+     */
+    cursor?: IntegrationProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationProviders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationProviders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IntegrationProviders.
+     */
+    distinct?: IntegrationProviderScalarFieldEnum | IntegrationProviderScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationProvider findMany
+   */
+  export type IntegrationProviderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegrationProviders to fetch.
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationProviders to fetch.
+     */
+    orderBy?: IntegrationProviderOrderByWithRelationInput | IntegrationProviderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing IntegrationProviders.
+     */
+    cursor?: IntegrationProviderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationProviders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationProviders.
+     */
+    skip?: number
+    distinct?: IntegrationProviderScalarFieldEnum | IntegrationProviderScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationProvider create
+   */
+  export type IntegrationProviderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a IntegrationProvider.
+     */
+    data: XOR<IntegrationProviderCreateInput, IntegrationProviderUncheckedCreateInput>
+  }
+
+  /**
+   * IntegrationProvider createMany
+   */
+  export type IntegrationProviderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IntegrationProviders.
+     */
+    data: IntegrationProviderCreateManyInput | IntegrationProviderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IntegrationProvider createManyAndReturn
+   */
+  export type IntegrationProviderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * The data used to create many IntegrationProviders.
+     */
+    data: IntegrationProviderCreateManyInput | IntegrationProviderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IntegrationProvider update
+   */
+  export type IntegrationProviderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a IntegrationProvider.
+     */
+    data: XOR<IntegrationProviderUpdateInput, IntegrationProviderUncheckedUpdateInput>
+    /**
+     * Choose, which IntegrationProvider to update.
+     */
+    where: IntegrationProviderWhereUniqueInput
+  }
+
+  /**
+   * IntegrationProvider updateMany
+   */
+  export type IntegrationProviderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IntegrationProviders.
+     */
+    data: XOR<IntegrationProviderUpdateManyMutationInput, IntegrationProviderUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegrationProviders to update
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * Limit how many IntegrationProviders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationProvider updateManyAndReturn
+   */
+  export type IntegrationProviderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * The data used to update IntegrationProviders.
+     */
+    data: XOR<IntegrationProviderUpdateManyMutationInput, IntegrationProviderUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegrationProviders to update
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * Limit how many IntegrationProviders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationProvider upsert
+   */
+  export type IntegrationProviderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the IntegrationProvider to update in case it exists.
+     */
+    where: IntegrationProviderWhereUniqueInput
+    /**
+     * In case the IntegrationProvider found by the `where` argument doesn't exist, create a new IntegrationProvider with this data.
+     */
+    create: XOR<IntegrationProviderCreateInput, IntegrationProviderUncheckedCreateInput>
+    /**
+     * In case the IntegrationProvider was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IntegrationProviderUpdateInput, IntegrationProviderUncheckedUpdateInput>
+  }
+
+  /**
+   * IntegrationProvider delete
+   */
+  export type IntegrationProviderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+    /**
+     * Filter which IntegrationProvider to delete.
+     */
+    where: IntegrationProviderWhereUniqueInput
+  }
+
+  /**
+   * IntegrationProvider deleteMany
+   */
+  export type IntegrationProviderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegrationProviders to delete
+     */
+    where?: IntegrationProviderWhereInput
+    /**
+     * Limit how many IntegrationProviders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationProvider.integrations
+   */
+  export type IntegrationProvider$integrationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Integration
+     */
+    select?: IntegrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Integration
+     */
+    omit?: IntegrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationInclude<ExtArgs> | null
+    where?: IntegrationWhereInput
+    orderBy?: IntegrationOrderByWithRelationInput | IntegrationOrderByWithRelationInput[]
+    cursor?: IntegrationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IntegrationScalarFieldEnum | IntegrationScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationProvider without action
+   */
+  export type IntegrationProviderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationProvider
+     */
+    select?: IntegrationProviderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationProvider
+     */
+    omit?: IntegrationProviderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegrationProviderInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Integration
    */
 
@@ -2462,11 +3880,12 @@ export namespace Prisma {
   export type IntegrationMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    type: $Enums.IntegrationType | null
+    name: string | null
     accessToken: string | null
     refreshToken: string | null
     lastSync: Date | null
     externalId: string | null
+    integrationProviderId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2474,11 +3893,12 @@ export namespace Prisma {
   export type IntegrationMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    type: $Enums.IntegrationType | null
+    name: string | null
     accessToken: string | null
     refreshToken: string | null
     lastSync: Date | null
     externalId: string | null
+    integrationProviderId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2486,11 +3906,12 @@ export namespace Prisma {
   export type IntegrationCountAggregateOutputType = {
     id: number
     userId: number
-    type: number
+    name: number
     accessToken: number
     refreshToken: number
     lastSync: number
     externalId: number
+    integrationProviderId: number
     metadata: number
     createdAt: number
     updatedAt: number
@@ -2501,11 +3922,12 @@ export namespace Prisma {
   export type IntegrationMinAggregateInputType = {
     id?: true
     userId?: true
-    type?: true
+    name?: true
     accessToken?: true
     refreshToken?: true
     lastSync?: true
     externalId?: true
+    integrationProviderId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2513,11 +3935,12 @@ export namespace Prisma {
   export type IntegrationMaxAggregateInputType = {
     id?: true
     userId?: true
-    type?: true
+    name?: true
     accessToken?: true
     refreshToken?: true
     lastSync?: true
     externalId?: true
+    integrationProviderId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2525,11 +3948,12 @@ export namespace Prisma {
   export type IntegrationCountAggregateInputType = {
     id?: true
     userId?: true
-    type?: true
+    name?: true
     accessToken?: true
     refreshToken?: true
     lastSync?: true
     externalId?: true
+    integrationProviderId?: true
     metadata?: true
     createdAt?: true
     updatedAt?: true
@@ -2611,11 +4035,12 @@ export namespace Prisma {
   export type IntegrationGroupByOutputType = {
     id: string
     userId: string
-    type: $Enums.IntegrationType
+    name: string | null
     accessToken: string
     refreshToken: string | null
     lastSync: Date | null
     externalId: string | null
+    integrationProviderId: string
     metadata: JsonValue | null
     createdAt: Date
     updatedAt: Date
@@ -2641,82 +4066,99 @@ export namespace Prisma {
   export type IntegrationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    type?: boolean
+    name?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     lastSync?: boolean
     externalId?: boolean
+    integrationProviderId?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    destinationCalendars?: boolean | Integration$destinationCalendarsArgs<ExtArgs>
+    _count?: boolean | IntegrationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["integration"]>
 
   export type IntegrationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    type?: boolean
+    name?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     lastSync?: boolean
     externalId?: boolean
+    integrationProviderId?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["integration"]>
 
   export type IntegrationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    type?: boolean
+    name?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     lastSync?: boolean
     externalId?: boolean
+    integrationProviderId?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["integration"]>
 
   export type IntegrationSelectScalar = {
     id?: boolean
     userId?: boolean
-    type?: boolean
+    name?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     lastSync?: boolean
     externalId?: boolean
+    integrationProviderId?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type IntegrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "accessToken" | "refreshToken" | "lastSync" | "externalId" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["integration"]>
+  export type IntegrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "accessToken" | "refreshToken" | "lastSync" | "externalId" | "integrationProviderId" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["integration"]>
   export type IntegrationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    destinationCalendars?: boolean | Integration$destinationCalendarsArgs<ExtArgs>
+    _count?: boolean | IntegrationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type IntegrationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type IntegrationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    integrationProvider?: boolean | IntegrationProviderDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $IntegrationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Integration"
     objects: {
+      integrationProvider: Prisma.$IntegrationProviderPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      destinationCalendars: Prisma.$DestinationCalendarPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      type: $Enums.IntegrationType
+      name: string | null
       accessToken: string
       refreshToken: string | null
       lastSync: Date | null
       externalId: string | null
+      integrationProviderId: string
       metadata: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
@@ -3114,7 +4556,9 @@ export namespace Prisma {
    */
   export interface Prisma__IntegrationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    integrationProvider<T extends IntegrationProviderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IntegrationProviderDefaultArgs<ExtArgs>>): Prisma__IntegrationProviderClient<$Result.GetResult<Prisma.$IntegrationProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    destinationCalendars<T extends Integration$destinationCalendarsArgs<ExtArgs> = {}>(args?: Subset<T, Integration$destinationCalendarsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3146,11 +4590,12 @@ export namespace Prisma {
   interface IntegrationFieldRefs {
     readonly id: FieldRef<"Integration", 'String'>
     readonly userId: FieldRef<"Integration", 'String'>
-    readonly type: FieldRef<"Integration", 'IntegrationType'>
+    readonly name: FieldRef<"Integration", 'String'>
     readonly accessToken: FieldRef<"Integration", 'String'>
     readonly refreshToken: FieldRef<"Integration", 'String'>
     readonly lastSync: FieldRef<"Integration", 'DateTime'>
     readonly externalId: FieldRef<"Integration", 'String'>
+    readonly integrationProviderId: FieldRef<"Integration", 'String'>
     readonly metadata: FieldRef<"Integration", 'Json'>
     readonly createdAt: FieldRef<"Integration", 'DateTime'>
     readonly updatedAt: FieldRef<"Integration", 'DateTime'>
@@ -3547,6 +4992,30 @@ export namespace Prisma {
      * Limit how many Integrations to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Integration.destinationCalendars
+   */
+  export type Integration$destinationCalendarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    where?: DestinationCalendarWhereInput
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    cursor?: DestinationCalendarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationCalendarScalarFieldEnum | DestinationCalendarScalarFieldEnum[]
   }
 
   /**
@@ -5809,6 +7278,1124 @@ export namespace Prisma {
 
 
   /**
+   * Model DestinationCalendar
+   */
+
+  export type AggregateDestinationCalendar = {
+    _count: DestinationCalendarCountAggregateOutputType | null
+    _min: DestinationCalendarMinAggregateOutputType | null
+    _max: DestinationCalendarMaxAggregateOutputType | null
+  }
+
+  export type DestinationCalendarMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    integrationId: string | null
+    externalId: string | null
+    name: string | null
+    isPrimary: boolean | null
+    isReadOnly: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DestinationCalendarMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    integrationId: string | null
+    externalId: string | null
+    name: string | null
+    isPrimary: boolean | null
+    isReadOnly: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DestinationCalendarCountAggregateOutputType = {
+    id: number
+    userId: number
+    integrationId: number
+    externalId: number
+    name: number
+    isPrimary: number
+    isReadOnly: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DestinationCalendarMinAggregateInputType = {
+    id?: true
+    userId?: true
+    integrationId?: true
+    externalId?: true
+    name?: true
+    isPrimary?: true
+    isReadOnly?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DestinationCalendarMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    integrationId?: true
+    externalId?: true
+    name?: true
+    isPrimary?: true
+    isReadOnly?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DestinationCalendarCountAggregateInputType = {
+    id?: true
+    userId?: true
+    integrationId?: true
+    externalId?: true
+    name?: true
+    isPrimary?: true
+    isReadOnly?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DestinationCalendarAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DestinationCalendar to aggregate.
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCalendars to fetch.
+     */
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DestinationCalendarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCalendars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCalendars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DestinationCalendars
+    **/
+    _count?: true | DestinationCalendarCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DestinationCalendarMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DestinationCalendarMaxAggregateInputType
+  }
+
+  export type GetDestinationCalendarAggregateType<T extends DestinationCalendarAggregateArgs> = {
+        [P in keyof T & keyof AggregateDestinationCalendar]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDestinationCalendar[P]>
+      : GetScalarType<T[P], AggregateDestinationCalendar[P]>
+  }
+
+
+
+
+  export type DestinationCalendarGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCalendarWhereInput
+    orderBy?: DestinationCalendarOrderByWithAggregationInput | DestinationCalendarOrderByWithAggregationInput[]
+    by: DestinationCalendarScalarFieldEnum[] | DestinationCalendarScalarFieldEnum
+    having?: DestinationCalendarScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DestinationCalendarCountAggregateInputType | true
+    _min?: DestinationCalendarMinAggregateInputType
+    _max?: DestinationCalendarMaxAggregateInputType
+  }
+
+  export type DestinationCalendarGroupByOutputType = {
+    id: string
+    userId: string
+    integrationId: string
+    externalId: string
+    name: string
+    isPrimary: boolean
+    isReadOnly: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: DestinationCalendarCountAggregateOutputType | null
+    _min: DestinationCalendarMinAggregateOutputType | null
+    _max: DestinationCalendarMaxAggregateOutputType | null
+  }
+
+  type GetDestinationCalendarGroupByPayload<T extends DestinationCalendarGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DestinationCalendarGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DestinationCalendarGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DestinationCalendarGroupByOutputType[P]>
+            : GetScalarType<T[P], DestinationCalendarGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DestinationCalendarSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    integrationId?: boolean
+    externalId?: boolean
+    name?: boolean
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCalendar"]>
+
+  export type DestinationCalendarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    integrationId?: boolean
+    externalId?: boolean
+    name?: boolean
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCalendar"]>
+
+  export type DestinationCalendarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    integrationId?: boolean
+    externalId?: boolean
+    name?: boolean
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCalendar"]>
+
+  export type DestinationCalendarSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    integrationId?: boolean
+    externalId?: boolean
+    name?: boolean
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DestinationCalendarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "integrationId" | "externalId" | "name" | "isPrimary" | "isReadOnly" | "createdAt" | "updatedAt", ExtArgs["result"]["destinationCalendar"]>
+  export type DestinationCalendarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }
+  export type DestinationCalendarIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }
+  export type DestinationCalendarIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    integration?: boolean | IntegrationDefaultArgs<ExtArgs>
+  }
+
+  export type $DestinationCalendarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DestinationCalendar"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      integration: Prisma.$IntegrationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      integrationId: string
+      externalId: string
+      name: string
+      isPrimary: boolean
+      isReadOnly: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["destinationCalendar"]>
+    composites: {}
+  }
+
+  type DestinationCalendarGetPayload<S extends boolean | null | undefined | DestinationCalendarDefaultArgs> = $Result.GetResult<Prisma.$DestinationCalendarPayload, S>
+
+  type DestinationCalendarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DestinationCalendarFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DestinationCalendarCountAggregateInputType | true
+    }
+
+  export interface DestinationCalendarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DestinationCalendar'], meta: { name: 'DestinationCalendar' } }
+    /**
+     * Find zero or one DestinationCalendar that matches the filter.
+     * @param {DestinationCalendarFindUniqueArgs} args - Arguments to find a DestinationCalendar
+     * @example
+     * // Get one DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DestinationCalendarFindUniqueArgs>(args: SelectSubset<T, DestinationCalendarFindUniqueArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DestinationCalendar that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DestinationCalendarFindUniqueOrThrowArgs} args - Arguments to find a DestinationCalendar
+     * @example
+     * // Get one DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DestinationCalendarFindUniqueOrThrowArgs>(args: SelectSubset<T, DestinationCalendarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DestinationCalendar that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarFindFirstArgs} args - Arguments to find a DestinationCalendar
+     * @example
+     * // Get one DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DestinationCalendarFindFirstArgs>(args?: SelectSubset<T, DestinationCalendarFindFirstArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DestinationCalendar that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarFindFirstOrThrowArgs} args - Arguments to find a DestinationCalendar
+     * @example
+     * // Get one DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DestinationCalendarFindFirstOrThrowArgs>(args?: SelectSubset<T, DestinationCalendarFindFirstOrThrowArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DestinationCalendars that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DestinationCalendars
+     * const destinationCalendars = await prisma.destinationCalendar.findMany()
+     * 
+     * // Get first 10 DestinationCalendars
+     * const destinationCalendars = await prisma.destinationCalendar.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const destinationCalendarWithIdOnly = await prisma.destinationCalendar.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DestinationCalendarFindManyArgs>(args?: SelectSubset<T, DestinationCalendarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DestinationCalendar.
+     * @param {DestinationCalendarCreateArgs} args - Arguments to create a DestinationCalendar.
+     * @example
+     * // Create one DestinationCalendar
+     * const DestinationCalendar = await prisma.destinationCalendar.create({
+     *   data: {
+     *     // ... data to create a DestinationCalendar
+     *   }
+     * })
+     * 
+     */
+    create<T extends DestinationCalendarCreateArgs>(args: SelectSubset<T, DestinationCalendarCreateArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DestinationCalendars.
+     * @param {DestinationCalendarCreateManyArgs} args - Arguments to create many DestinationCalendars.
+     * @example
+     * // Create many DestinationCalendars
+     * const destinationCalendar = await prisma.destinationCalendar.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DestinationCalendarCreateManyArgs>(args?: SelectSubset<T, DestinationCalendarCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DestinationCalendars and returns the data saved in the database.
+     * @param {DestinationCalendarCreateManyAndReturnArgs} args - Arguments to create many DestinationCalendars.
+     * @example
+     * // Create many DestinationCalendars
+     * const destinationCalendar = await prisma.destinationCalendar.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DestinationCalendars and only return the `id`
+     * const destinationCalendarWithIdOnly = await prisma.destinationCalendar.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DestinationCalendarCreateManyAndReturnArgs>(args?: SelectSubset<T, DestinationCalendarCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DestinationCalendar.
+     * @param {DestinationCalendarDeleteArgs} args - Arguments to delete one DestinationCalendar.
+     * @example
+     * // Delete one DestinationCalendar
+     * const DestinationCalendar = await prisma.destinationCalendar.delete({
+     *   where: {
+     *     // ... filter to delete one DestinationCalendar
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DestinationCalendarDeleteArgs>(args: SelectSubset<T, DestinationCalendarDeleteArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DestinationCalendar.
+     * @param {DestinationCalendarUpdateArgs} args - Arguments to update one DestinationCalendar.
+     * @example
+     * // Update one DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DestinationCalendarUpdateArgs>(args: SelectSubset<T, DestinationCalendarUpdateArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DestinationCalendars.
+     * @param {DestinationCalendarDeleteManyArgs} args - Arguments to filter DestinationCalendars to delete.
+     * @example
+     * // Delete a few DestinationCalendars
+     * const { count } = await prisma.destinationCalendar.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DestinationCalendarDeleteManyArgs>(args?: SelectSubset<T, DestinationCalendarDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DestinationCalendars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DestinationCalendars
+     * const destinationCalendar = await prisma.destinationCalendar.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DestinationCalendarUpdateManyArgs>(args: SelectSubset<T, DestinationCalendarUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DestinationCalendars and returns the data updated in the database.
+     * @param {DestinationCalendarUpdateManyAndReturnArgs} args - Arguments to update many DestinationCalendars.
+     * @example
+     * // Update many DestinationCalendars
+     * const destinationCalendar = await prisma.destinationCalendar.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DestinationCalendars and only return the `id`
+     * const destinationCalendarWithIdOnly = await prisma.destinationCalendar.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DestinationCalendarUpdateManyAndReturnArgs>(args: SelectSubset<T, DestinationCalendarUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DestinationCalendar.
+     * @param {DestinationCalendarUpsertArgs} args - Arguments to update or create a DestinationCalendar.
+     * @example
+     * // Update or create a DestinationCalendar
+     * const destinationCalendar = await prisma.destinationCalendar.upsert({
+     *   create: {
+     *     // ... data to create a DestinationCalendar
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DestinationCalendar we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DestinationCalendarUpsertArgs>(args: SelectSubset<T, DestinationCalendarUpsertArgs<ExtArgs>>): Prisma__DestinationCalendarClient<$Result.GetResult<Prisma.$DestinationCalendarPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DestinationCalendars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarCountArgs} args - Arguments to filter DestinationCalendars to count.
+     * @example
+     * // Count the number of DestinationCalendars
+     * const count = await prisma.destinationCalendar.count({
+     *   where: {
+     *     // ... the filter for the DestinationCalendars we want to count
+     *   }
+     * })
+    **/
+    count<T extends DestinationCalendarCountArgs>(
+      args?: Subset<T, DestinationCalendarCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DestinationCalendarCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DestinationCalendar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DestinationCalendarAggregateArgs>(args: Subset<T, DestinationCalendarAggregateArgs>): Prisma.PrismaPromise<GetDestinationCalendarAggregateType<T>>
+
+    /**
+     * Group by DestinationCalendar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCalendarGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DestinationCalendarGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DestinationCalendarGroupByArgs['orderBy'] }
+        : { orderBy?: DestinationCalendarGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DestinationCalendarGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDestinationCalendarGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DestinationCalendar model
+   */
+  readonly fields: DestinationCalendarFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DestinationCalendar.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DestinationCalendarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    integration<T extends IntegrationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IntegrationDefaultArgs<ExtArgs>>): Prisma__IntegrationClient<$Result.GetResult<Prisma.$IntegrationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DestinationCalendar model
+   */
+  interface DestinationCalendarFieldRefs {
+    readonly id: FieldRef<"DestinationCalendar", 'String'>
+    readonly userId: FieldRef<"DestinationCalendar", 'String'>
+    readonly integrationId: FieldRef<"DestinationCalendar", 'String'>
+    readonly externalId: FieldRef<"DestinationCalendar", 'String'>
+    readonly name: FieldRef<"DestinationCalendar", 'String'>
+    readonly isPrimary: FieldRef<"DestinationCalendar", 'Boolean'>
+    readonly isReadOnly: FieldRef<"DestinationCalendar", 'Boolean'>
+    readonly createdAt: FieldRef<"DestinationCalendar", 'DateTime'>
+    readonly updatedAt: FieldRef<"DestinationCalendar", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DestinationCalendar findUnique
+   */
+  export type DestinationCalendarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCalendar to fetch.
+     */
+    where: DestinationCalendarWhereUniqueInput
+  }
+
+  /**
+   * DestinationCalendar findUniqueOrThrow
+   */
+  export type DestinationCalendarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCalendar to fetch.
+     */
+    where: DestinationCalendarWhereUniqueInput
+  }
+
+  /**
+   * DestinationCalendar findFirst
+   */
+  export type DestinationCalendarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCalendar to fetch.
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCalendars to fetch.
+     */
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DestinationCalendars.
+     */
+    cursor?: DestinationCalendarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCalendars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCalendars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DestinationCalendars.
+     */
+    distinct?: DestinationCalendarScalarFieldEnum | DestinationCalendarScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCalendar findFirstOrThrow
+   */
+  export type DestinationCalendarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCalendar to fetch.
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCalendars to fetch.
+     */
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DestinationCalendars.
+     */
+    cursor?: DestinationCalendarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCalendars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCalendars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DestinationCalendars.
+     */
+    distinct?: DestinationCalendarScalarFieldEnum | DestinationCalendarScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCalendar findMany
+   */
+  export type DestinationCalendarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCalendars to fetch.
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCalendars to fetch.
+     */
+    orderBy?: DestinationCalendarOrderByWithRelationInput | DestinationCalendarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DestinationCalendars.
+     */
+    cursor?: DestinationCalendarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCalendars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCalendars.
+     */
+    skip?: number
+    distinct?: DestinationCalendarScalarFieldEnum | DestinationCalendarScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCalendar create
+   */
+  export type DestinationCalendarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DestinationCalendar.
+     */
+    data: XOR<DestinationCalendarCreateInput, DestinationCalendarUncheckedCreateInput>
+  }
+
+  /**
+   * DestinationCalendar createMany
+   */
+  export type DestinationCalendarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DestinationCalendars.
+     */
+    data: DestinationCalendarCreateManyInput | DestinationCalendarCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DestinationCalendar createManyAndReturn
+   */
+  export type DestinationCalendarCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * The data used to create many DestinationCalendars.
+     */
+    data: DestinationCalendarCreateManyInput | DestinationCalendarCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCalendar update
+   */
+  export type DestinationCalendarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DestinationCalendar.
+     */
+    data: XOR<DestinationCalendarUpdateInput, DestinationCalendarUncheckedUpdateInput>
+    /**
+     * Choose, which DestinationCalendar to update.
+     */
+    where: DestinationCalendarWhereUniqueInput
+  }
+
+  /**
+   * DestinationCalendar updateMany
+   */
+  export type DestinationCalendarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DestinationCalendars.
+     */
+    data: XOR<DestinationCalendarUpdateManyMutationInput, DestinationCalendarUncheckedUpdateManyInput>
+    /**
+     * Filter which DestinationCalendars to update
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * Limit how many DestinationCalendars to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DestinationCalendar updateManyAndReturn
+   */
+  export type DestinationCalendarUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * The data used to update DestinationCalendars.
+     */
+    data: XOR<DestinationCalendarUpdateManyMutationInput, DestinationCalendarUncheckedUpdateManyInput>
+    /**
+     * Filter which DestinationCalendars to update
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * Limit how many DestinationCalendars to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCalendar upsert
+   */
+  export type DestinationCalendarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DestinationCalendar to update in case it exists.
+     */
+    where: DestinationCalendarWhereUniqueInput
+    /**
+     * In case the DestinationCalendar found by the `where` argument doesn't exist, create a new DestinationCalendar with this data.
+     */
+    create: XOR<DestinationCalendarCreateInput, DestinationCalendarUncheckedCreateInput>
+    /**
+     * In case the DestinationCalendar was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DestinationCalendarUpdateInput, DestinationCalendarUncheckedUpdateInput>
+  }
+
+  /**
+   * DestinationCalendar delete
+   */
+  export type DestinationCalendarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+    /**
+     * Filter which DestinationCalendar to delete.
+     */
+    where: DestinationCalendarWhereUniqueInput
+  }
+
+  /**
+   * DestinationCalendar deleteMany
+   */
+  export type DestinationCalendarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DestinationCalendars to delete
+     */
+    where?: DestinationCalendarWhereInput
+    /**
+     * Limit how many DestinationCalendars to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DestinationCalendar without action
+   */
+  export type DestinationCalendarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCalendar
+     */
+    select?: DestinationCalendarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCalendar
+     */
+    omit?: DestinationCalendarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCalendarInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5839,14 +8426,31 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const IntegrationProviderScalarFieldEnum: {
+    id: 'id',
+    providerKey: 'providerKey',
+    displayName: 'displayName',
+    description: 'description',
+    logoUrl: 'logoUrl',
+    type: 'type',
+    isEnabled: 'isEnabled',
+    isBeta: 'isBeta',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type IntegrationProviderScalarFieldEnum = (typeof IntegrationProviderScalarFieldEnum)[keyof typeof IntegrationProviderScalarFieldEnum]
+
+
   export const IntegrationScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    type: 'type',
+    name: 'name',
     accessToken: 'accessToken',
     refreshToken: 'refreshToken',
     lastSync: 'lastSync',
     externalId: 'externalId',
+    integrationProviderId: 'integrationProviderId',
     metadata: 'metadata',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -5880,6 +8484,21 @@ export namespace Prisma {
   };
 
   export type UserOnboardingScalarFieldEnum = (typeof UserOnboardingScalarFieldEnum)[keyof typeof UserOnboardingScalarFieldEnum]
+
+
+  export const DestinationCalendarScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    integrationId: 'integrationId',
+    externalId: 'externalId',
+    name: 'name',
+    isPrimary: 'isPrimary',
+    isReadOnly: 'isReadOnly',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DestinationCalendarScalarFieldEnum = (typeof DestinationCalendarScalarFieldEnum)[keyof typeof DestinationCalendarScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5985,6 +8604,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -5995,13 +8621,6 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -6040,6 +8659,7 @@ export namespace Prisma {
     integrations?: IntegrationListRelationFilter
     onboarding?: XOR<UserOnboardingNullableScalarRelationFilter, UserOnboardingWhereInput> | null
     chosenPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
+    destinationCalendars?: DestinationCalendarListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6057,6 +8677,7 @@ export namespace Prisma {
     integrations?: IntegrationOrderByRelationAggregateInput
     onboarding?: UserOnboardingOrderByWithRelationInput
     chosenPersona?: UserPersonaOrderByWithRelationInput
+    destinationCalendars?: DestinationCalendarOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6077,6 +8698,7 @@ export namespace Prisma {
     integrations?: IntegrationListRelationFilter
     onboarding?: XOR<UserOnboardingNullableScalarRelationFilter, UserOnboardingWhereInput> | null
     chosenPersona?: XOR<UserPersonaNullableScalarRelationFilter, UserPersonaWhereInput> | null
+    destinationCalendars?: DestinationCalendarListRelationFilter
   }, "id" | "email" | "googleId">
 
   export type UserOrderByWithAggregationInput = {
@@ -6113,63 +8735,153 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
+  export type IntegrationProviderWhereInput = {
+    AND?: IntegrationProviderWhereInput | IntegrationProviderWhereInput[]
+    OR?: IntegrationProviderWhereInput[]
+    NOT?: IntegrationProviderWhereInput | IntegrationProviderWhereInput[]
+    id?: StringFilter<"IntegrationProvider"> | string
+    providerKey?: StringFilter<"IntegrationProvider"> | string
+    displayName?: StringFilter<"IntegrationProvider"> | string
+    description?: StringNullableFilter<"IntegrationProvider"> | string | null
+    logoUrl?: StringNullableFilter<"IntegrationProvider"> | string | null
+    type?: EnumIntegrationTypeFilter<"IntegrationProvider"> | $Enums.IntegrationType
+    isEnabled?: BoolFilter<"IntegrationProvider"> | boolean
+    isBeta?: BoolFilter<"IntegrationProvider"> | boolean
+    createdAt?: DateTimeFilter<"IntegrationProvider"> | Date | string
+    updatedAt?: DateTimeFilter<"IntegrationProvider"> | Date | string
+    integrations?: IntegrationListRelationFilter
+  }
+
+  export type IntegrationProviderOrderByWithRelationInput = {
+    id?: SortOrder
+    providerKey?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isEnabled?: SortOrder
+    isBeta?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    integrations?: IntegrationOrderByRelationAggregateInput
+  }
+
+  export type IntegrationProviderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    providerKey?: string
+    AND?: IntegrationProviderWhereInput | IntegrationProviderWhereInput[]
+    OR?: IntegrationProviderWhereInput[]
+    NOT?: IntegrationProviderWhereInput | IntegrationProviderWhereInput[]
+    displayName?: StringFilter<"IntegrationProvider"> | string
+    description?: StringNullableFilter<"IntegrationProvider"> | string | null
+    logoUrl?: StringNullableFilter<"IntegrationProvider"> | string | null
+    type?: EnumIntegrationTypeFilter<"IntegrationProvider"> | $Enums.IntegrationType
+    isEnabled?: BoolFilter<"IntegrationProvider"> | boolean
+    isBeta?: BoolFilter<"IntegrationProvider"> | boolean
+    createdAt?: DateTimeFilter<"IntegrationProvider"> | Date | string
+    updatedAt?: DateTimeFilter<"IntegrationProvider"> | Date | string
+    integrations?: IntegrationListRelationFilter
+  }, "id" | "providerKey">
+
+  export type IntegrationProviderOrderByWithAggregationInput = {
+    id?: SortOrder
+    providerKey?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isEnabled?: SortOrder
+    isBeta?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: IntegrationProviderCountOrderByAggregateInput
+    _max?: IntegrationProviderMaxOrderByAggregateInput
+    _min?: IntegrationProviderMinOrderByAggregateInput
+  }
+
+  export type IntegrationProviderScalarWhereWithAggregatesInput = {
+    AND?: IntegrationProviderScalarWhereWithAggregatesInput | IntegrationProviderScalarWhereWithAggregatesInput[]
+    OR?: IntegrationProviderScalarWhereWithAggregatesInput[]
+    NOT?: IntegrationProviderScalarWhereWithAggregatesInput | IntegrationProviderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"IntegrationProvider"> | string
+    providerKey?: StringWithAggregatesFilter<"IntegrationProvider"> | string
+    displayName?: StringWithAggregatesFilter<"IntegrationProvider"> | string
+    description?: StringNullableWithAggregatesFilter<"IntegrationProvider"> | string | null
+    logoUrl?: StringNullableWithAggregatesFilter<"IntegrationProvider"> | string | null
+    type?: EnumIntegrationTypeWithAggregatesFilter<"IntegrationProvider"> | $Enums.IntegrationType
+    isEnabled?: BoolWithAggregatesFilter<"IntegrationProvider"> | boolean
+    isBeta?: BoolWithAggregatesFilter<"IntegrationProvider"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"IntegrationProvider"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"IntegrationProvider"> | Date | string
+  }
+
   export type IntegrationWhereInput = {
     AND?: IntegrationWhereInput | IntegrationWhereInput[]
     OR?: IntegrationWhereInput[]
     NOT?: IntegrationWhereInput | IntegrationWhereInput[]
     id?: StringFilter<"Integration"> | string
     userId?: StringFilter<"Integration"> | string
-    type?: EnumIntegrationTypeFilter<"Integration"> | $Enums.IntegrationType
+    name?: StringNullableFilter<"Integration"> | string | null
     accessToken?: StringFilter<"Integration"> | string
     refreshToken?: StringNullableFilter<"Integration"> | string | null
     lastSync?: DateTimeNullableFilter<"Integration"> | Date | string | null
     externalId?: StringNullableFilter<"Integration"> | string | null
+    integrationProviderId?: StringFilter<"Integration"> | string
     metadata?: JsonNullableFilter<"Integration">
     createdAt?: DateTimeFilter<"Integration"> | Date | string
     updatedAt?: DateTimeFilter<"Integration"> | Date | string
+    integrationProvider?: XOR<IntegrationProviderScalarRelationFilter, IntegrationProviderWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    destinationCalendars?: DestinationCalendarListRelationFilter
   }
 
   export type IntegrationOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    type?: SortOrder
+    name?: SortOrderInput | SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     lastSync?: SortOrderInput | SortOrder
     externalId?: SortOrderInput | SortOrder
+    integrationProviderId?: SortOrder
     metadata?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    integrationProvider?: IntegrationProviderOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    destinationCalendars?: DestinationCalendarOrderByRelationAggregateInput
   }
 
   export type IntegrationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    externalId?: string
-    userId_type?: IntegrationUserIdTypeCompoundUniqueInput
+    user_provider_external_id_key?: IntegrationUser_provider_external_id_keyCompoundUniqueInput
     AND?: IntegrationWhereInput | IntegrationWhereInput[]
     OR?: IntegrationWhereInput[]
     NOT?: IntegrationWhereInput | IntegrationWhereInput[]
     userId?: StringFilter<"Integration"> | string
-    type?: EnumIntegrationTypeFilter<"Integration"> | $Enums.IntegrationType
+    name?: StringNullableFilter<"Integration"> | string | null
     accessToken?: StringFilter<"Integration"> | string
     refreshToken?: StringNullableFilter<"Integration"> | string | null
     lastSync?: DateTimeNullableFilter<"Integration"> | Date | string | null
+    externalId?: StringNullableFilter<"Integration"> | string | null
+    integrationProviderId?: StringFilter<"Integration"> | string
     metadata?: JsonNullableFilter<"Integration">
     createdAt?: DateTimeFilter<"Integration"> | Date | string
     updatedAt?: DateTimeFilter<"Integration"> | Date | string
+    integrationProvider?: XOR<IntegrationProviderScalarRelationFilter, IntegrationProviderWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "externalId" | "userId_type">
+    destinationCalendars?: DestinationCalendarListRelationFilter
+  }, "id" | "user_provider_external_id_key">
 
   export type IntegrationOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    type?: SortOrder
+    name?: SortOrderInput | SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     lastSync?: SortOrderInput | SortOrder
     externalId?: SortOrderInput | SortOrder
+    integrationProviderId?: SortOrder
     metadata?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6184,11 +8896,12 @@ export namespace Prisma {
     NOT?: IntegrationScalarWhereWithAggregatesInput | IntegrationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Integration"> | string
     userId?: StringWithAggregatesFilter<"Integration"> | string
-    type?: EnumIntegrationTypeWithAggregatesFilter<"Integration"> | $Enums.IntegrationType
+    name?: StringNullableWithAggregatesFilter<"Integration"> | string | null
     accessToken?: StringWithAggregatesFilter<"Integration"> | string
     refreshToken?: StringNullableWithAggregatesFilter<"Integration"> | string | null
     lastSync?: DateTimeNullableWithAggregatesFilter<"Integration"> | Date | string | null
     externalId?: StringNullableWithAggregatesFilter<"Integration"> | string | null
+    integrationProviderId?: StringWithAggregatesFilter<"Integration"> | string
     metadata?: JsonNullableWithAggregatesFilter<"Integration">
     createdAt?: DateTimeWithAggregatesFilter<"Integration"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Integration"> | Date | string
@@ -6335,6 +9048,85 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"UserOnboarding"> | Date | string
   }
 
+  export type DestinationCalendarWhereInput = {
+    AND?: DestinationCalendarWhereInput | DestinationCalendarWhereInput[]
+    OR?: DestinationCalendarWhereInput[]
+    NOT?: DestinationCalendarWhereInput | DestinationCalendarWhereInput[]
+    id?: StringFilter<"DestinationCalendar"> | string
+    userId?: StringFilter<"DestinationCalendar"> | string
+    integrationId?: StringFilter<"DestinationCalendar"> | string
+    externalId?: StringFilter<"DestinationCalendar"> | string
+    name?: StringFilter<"DestinationCalendar"> | string
+    isPrimary?: BoolFilter<"DestinationCalendar"> | boolean
+    isReadOnly?: BoolFilter<"DestinationCalendar"> | boolean
+    createdAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+    updatedAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    integration?: XOR<IntegrationScalarRelationFilter, IntegrationWhereInput>
+  }
+
+  export type DestinationCalendarOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    integrationId?: SortOrder
+    externalId?: SortOrder
+    name?: SortOrder
+    isPrimary?: SortOrder
+    isReadOnly?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    integration?: IntegrationOrderByWithRelationInput
+  }
+
+  export type DestinationCalendarWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    user_integration_external_id_key?: DestinationCalendarUser_integration_external_id_keyCompoundUniqueInput
+    AND?: DestinationCalendarWhereInput | DestinationCalendarWhereInput[]
+    OR?: DestinationCalendarWhereInput[]
+    NOT?: DestinationCalendarWhereInput | DestinationCalendarWhereInput[]
+    userId?: StringFilter<"DestinationCalendar"> | string
+    integrationId?: StringFilter<"DestinationCalendar"> | string
+    externalId?: StringFilter<"DestinationCalendar"> | string
+    name?: StringFilter<"DestinationCalendar"> | string
+    isPrimary?: BoolFilter<"DestinationCalendar"> | boolean
+    isReadOnly?: BoolFilter<"DestinationCalendar"> | boolean
+    createdAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+    updatedAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    integration?: XOR<IntegrationScalarRelationFilter, IntegrationWhereInput>
+  }, "id" | "user_integration_external_id_key">
+
+  export type DestinationCalendarOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    integrationId?: SortOrder
+    externalId?: SortOrder
+    name?: SortOrder
+    isPrimary?: SortOrder
+    isReadOnly?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DestinationCalendarCountOrderByAggregateInput
+    _max?: DestinationCalendarMaxOrderByAggregateInput
+    _min?: DestinationCalendarMinOrderByAggregateInput
+  }
+
+  export type DestinationCalendarScalarWhereWithAggregatesInput = {
+    AND?: DestinationCalendarScalarWhereWithAggregatesInput | DestinationCalendarScalarWhereWithAggregatesInput[]
+    OR?: DestinationCalendarScalarWhereWithAggregatesInput[]
+    NOT?: DestinationCalendarScalarWhereWithAggregatesInput | DestinationCalendarScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DestinationCalendar"> | string
+    userId?: StringWithAggregatesFilter<"DestinationCalendar"> | string
+    integrationId?: StringWithAggregatesFilter<"DestinationCalendar"> | string
+    externalId?: StringWithAggregatesFilter<"DestinationCalendar"> | string
+    name?: StringWithAggregatesFilter<"DestinationCalendar"> | string
+    isPrimary?: BoolWithAggregatesFilter<"DestinationCalendar"> | boolean
+    isReadOnly?: BoolWithAggregatesFilter<"DestinationCalendar"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"DestinationCalendar"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DestinationCalendar"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -6349,6 +9141,7 @@ export namespace Prisma {
     integrations?: IntegrationCreateNestedManyWithoutUserInput
     onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
     chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6365,6 +9158,7 @@ export namespace Prisma {
     role?: $Enums.Role
     integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
     onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6381,6 +9175,7 @@ export namespace Prisma {
     integrations?: IntegrationUpdateManyWithoutUserNestedInput
     onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
     chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6397,6 +9192,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
     onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6440,9 +9236,104 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
+  export type IntegrationProviderCreateInput = {
+    id?: string
+    providerKey: string
+    displayName: string
+    description?: string | null
+    logoUrl?: string | null
+    type: $Enums.IntegrationType
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    integrations?: IntegrationCreateNestedManyWithoutIntegrationProviderInput
+  }
+
+  export type IntegrationProviderUncheckedCreateInput = {
+    id?: string
+    providerKey: string
+    displayName: string
+    description?: string | null
+    logoUrl?: string | null
+    type: $Enums.IntegrationType
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    integrations?: IntegrationUncheckedCreateNestedManyWithoutIntegrationProviderInput
+  }
+
+  export type IntegrationProviderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integrations?: IntegrationUpdateManyWithoutIntegrationProviderNestedInput
+  }
+
+  export type IntegrationProviderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integrations?: IntegrationUncheckedUpdateManyWithoutIntegrationProviderNestedInput
+  }
+
+  export type IntegrationProviderCreateManyInput = {
+    id?: string
+    providerKey: string
+    displayName: string
+    description?: string | null
+    logoUrl?: string | null
+    type: $Enums.IntegrationType
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationProviderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationProviderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntegrationCreateInput = {
     id?: string
-    type: $Enums.IntegrationType
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
@@ -6450,25 +9341,29 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    integrationProvider: IntegrationProviderCreateNestedOneWithoutIntegrationsInput
     user: UserCreateNestedOneWithoutIntegrationsInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutIntegrationInput
   }
 
   export type IntegrationUncheckedCreateInput = {
     id?: string
     userId: string
-    type: $Enums.IntegrationType
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
     externalId?: string | null
+    integrationProviderId: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutIntegrationInput
   }
 
   export type IntegrationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6476,30 +9371,35 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integrationProvider?: IntegrationProviderUpdateOneRequiredWithoutIntegrationsNestedInput
     user?: UserUpdateOneRequiredWithoutIntegrationsNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutIntegrationNestedInput
   }
 
   export type IntegrationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    integrationProviderId?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutIntegrationNestedInput
   }
 
   export type IntegrationCreateManyInput = {
     id?: string
     userId: string
-    type: $Enums.IntegrationType
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
     externalId?: string | null
+    integrationProviderId: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6507,7 +9407,7 @@ export namespace Prisma {
 
   export type IntegrationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6520,11 +9420,12 @@ export namespace Prisma {
   export type IntegrationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    integrationProviderId?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6683,6 +9584,88 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DestinationCalendarCreateInput = {
+    id?: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutDestinationCalendarsInput
+    integration: IntegrationCreateNestedOneWithoutDestinationCalendarsInput
+  }
+
+  export type DestinationCalendarUncheckedCreateInput = {
+    id?: string
+    userId: string
+    integrationId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutDestinationCalendarsNestedInput
+    integration?: IntegrationUpdateOneRequiredWithoutDestinationCalendarsNestedInput
+  }
+
+  export type DestinationCalendarUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    integrationId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DestinationCalendarCreateManyInput = {
+    id?: string
+    userId: string
+    integrationId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DestinationCalendarUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    integrationId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6747,12 +9730,22 @@ export namespace Prisma {
     isNot?: UserPersonaWhereInput | null
   }
 
+  export type DestinationCalendarListRelationFilter = {
+    every?: DestinationCalendarWhereInput
+    some?: DestinationCalendarWhereInput
+    none?: DestinationCalendarWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type IntegrationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DestinationCalendarOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6865,6 +9858,68 @@ export namespace Prisma {
     not?: NestedEnumIntegrationTypeFilter<$PrismaModel> | $Enums.IntegrationType
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntegrationProviderCountOrderByAggregateInput = {
+    id?: SortOrder
+    providerKey?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    type?: SortOrder
+    isEnabled?: SortOrder
+    isBeta?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationProviderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    providerKey?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    type?: SortOrder
+    isEnabled?: SortOrder
+    isBeta?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationProviderMinOrderByAggregateInput = {
+    id?: SortOrder
+    providerKey?: SortOrder
+    displayName?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    type?: SortOrder
+    isEnabled?: SortOrder
+    isBeta?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumIntegrationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.IntegrationType | EnumIntegrationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumIntegrationTypeWithAggregatesFilter<$PrismaModel> | $Enums.IntegrationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumIntegrationTypeFilter<$PrismaModel>
+    _max?: NestedEnumIntegrationTypeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -6899,24 +9954,31 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type IntegrationProviderScalarRelationFilter = {
+    is?: IntegrationProviderWhereInput
+    isNot?: IntegrationProviderWhereInput
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type IntegrationUserIdTypeCompoundUniqueInput = {
+  export type IntegrationUser_provider_external_id_keyCompoundUniqueInput = {
     userId: string
-    type: $Enums.IntegrationType
+    integrationProviderId: string
+    externalId: string
   }
 
   export type IntegrationCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    type?: SortOrder
+    name?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     lastSync?: SortOrder
     externalId?: SortOrder
+    integrationProviderId?: SortOrder
     metadata?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6925,11 +9987,12 @@ export namespace Prisma {
   export type IntegrationMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    type?: SortOrder
+    name?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     lastSync?: SortOrder
     externalId?: SortOrder
+    integrationProviderId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6937,23 +10000,14 @@ export namespace Prisma {
   export type IntegrationMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    type?: SortOrder
+    name?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     lastSync?: SortOrder
     externalId?: SortOrder
+    integrationProviderId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type EnumIntegrationTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.IntegrationType | EnumIntegrationTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.IntegrationType[] | ListEnumIntegrationTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumIntegrationTypeWithAggregatesFilter<$PrismaModel> | $Enums.IntegrationType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumIntegrationTypeFilter<$PrismaModel>
-    _max?: NestedEnumIntegrationTypeFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7049,11 +10103,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type UserOnboardingCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -7088,12 +10137,51 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type IntegrationScalarRelationFilter = {
+    is?: IntegrationWhereInput
+    isNot?: IntegrationWhereInput
+  }
+
+  export type DestinationCalendarUser_integration_external_id_keyCompoundUniqueInput = {
+    userId: string
+    integrationId: string
+    externalId: string
+  }
+
+  export type DestinationCalendarCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    integrationId?: SortOrder
+    externalId?: SortOrder
+    name?: SortOrder
+    isPrimary?: SortOrder
+    isReadOnly?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DestinationCalendarMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    integrationId?: SortOrder
+    externalId?: SortOrder
+    name?: SortOrder
+    isPrimary?: SortOrder
+    isReadOnly?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DestinationCalendarMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    integrationId?: SortOrder
+    externalId?: SortOrder
+    name?: SortOrder
+    isPrimary?: SortOrder
+    isReadOnly?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IntegrationCreateNestedManyWithoutUserInput = {
@@ -7115,6 +10203,13 @@ export namespace Prisma {
     connect?: UserPersonaWhereUniqueInput
   }
 
+  export type DestinationCalendarCreateNestedManyWithoutUserInput = {
+    create?: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput> | DestinationCalendarCreateWithoutUserInput[] | DestinationCalendarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutUserInput | DestinationCalendarCreateOrConnectWithoutUserInput[]
+    createMany?: DestinationCalendarCreateManyUserInputEnvelope
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+  }
+
   export type IntegrationUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
@@ -7126,6 +10221,13 @@ export namespace Prisma {
     create?: XOR<UserOnboardingCreateWithoutUserInput, UserOnboardingUncheckedCreateWithoutUserInput>
     connectOrCreate?: UserOnboardingCreateOrConnectWithoutUserInput
     connect?: UserOnboardingWhereUniqueInput
+  }
+
+  export type DestinationCalendarUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput> | DestinationCalendarCreateWithoutUserInput[] | DestinationCalendarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutUserInput | DestinationCalendarCreateOrConnectWithoutUserInput[]
+    createMany?: DestinationCalendarCreateManyUserInputEnvelope
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7178,6 +10280,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserPersonaUpdateToOneWithWhereWithoutUsersInput, UserPersonaUpdateWithoutUsersInput>, UserPersonaUncheckedUpdateWithoutUsersInput>
   }
 
+  export type DestinationCalendarUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput> | DestinationCalendarCreateWithoutUserInput[] | DestinationCalendarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutUserInput | DestinationCalendarCreateOrConnectWithoutUserInput[]
+    upsert?: DestinationCalendarUpsertWithWhereUniqueWithoutUserInput | DestinationCalendarUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DestinationCalendarCreateManyUserInputEnvelope
+    set?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    disconnect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    delete?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    update?: DestinationCalendarUpdateWithWhereUniqueWithoutUserInput | DestinationCalendarUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DestinationCalendarUpdateManyWithWhereWithoutUserInput | DestinationCalendarUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
+  }
+
   export type IntegrationUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<IntegrationCreateWithoutUserInput, IntegrationUncheckedCreateWithoutUserInput> | IntegrationCreateWithoutUserInput[] | IntegrationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: IntegrationCreateOrConnectWithoutUserInput | IntegrationCreateOrConnectWithoutUserInput[]
@@ -7202,18 +10318,106 @@ export namespace Prisma {
     update?: XOR<XOR<UserOnboardingUpdateToOneWithWhereWithoutUserInput, UserOnboardingUpdateWithoutUserInput>, UserOnboardingUncheckedUpdateWithoutUserInput>
   }
 
-  export type UserCreateNestedOneWithoutIntegrationsInput = {
-    create?: XOR<UserCreateWithoutIntegrationsInput, UserUncheckedCreateWithoutIntegrationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutIntegrationsInput
-    connect?: UserWhereUniqueInput
+  export type DestinationCalendarUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput> | DestinationCalendarCreateWithoutUserInput[] | DestinationCalendarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutUserInput | DestinationCalendarCreateOrConnectWithoutUserInput[]
+    upsert?: DestinationCalendarUpsertWithWhereUniqueWithoutUserInput | DestinationCalendarUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DestinationCalendarCreateManyUserInputEnvelope
+    set?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    disconnect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    delete?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    update?: DestinationCalendarUpdateWithWhereUniqueWithoutUserInput | DestinationCalendarUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DestinationCalendarUpdateManyWithWhereWithoutUserInput | DestinationCalendarUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
+  }
+
+  export type IntegrationCreateNestedManyWithoutIntegrationProviderInput = {
+    create?: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput> | IntegrationCreateWithoutIntegrationProviderInput[] | IntegrationUncheckedCreateWithoutIntegrationProviderInput[]
+    connectOrCreate?: IntegrationCreateOrConnectWithoutIntegrationProviderInput | IntegrationCreateOrConnectWithoutIntegrationProviderInput[]
+    createMany?: IntegrationCreateManyIntegrationProviderInputEnvelope
+    connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+  }
+
+  export type IntegrationUncheckedCreateNestedManyWithoutIntegrationProviderInput = {
+    create?: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput> | IntegrationCreateWithoutIntegrationProviderInput[] | IntegrationUncheckedCreateWithoutIntegrationProviderInput[]
+    connectOrCreate?: IntegrationCreateOrConnectWithoutIntegrationProviderInput | IntegrationCreateOrConnectWithoutIntegrationProviderInput[]
+    createMany?: IntegrationCreateManyIntegrationProviderInputEnvelope
+    connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
   }
 
   export type EnumIntegrationTypeFieldUpdateOperationsInput = {
     set?: $Enums.IntegrationType
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type IntegrationUpdateManyWithoutIntegrationProviderNestedInput = {
+    create?: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput> | IntegrationCreateWithoutIntegrationProviderInput[] | IntegrationUncheckedCreateWithoutIntegrationProviderInput[]
+    connectOrCreate?: IntegrationCreateOrConnectWithoutIntegrationProviderInput | IntegrationCreateOrConnectWithoutIntegrationProviderInput[]
+    upsert?: IntegrationUpsertWithWhereUniqueWithoutIntegrationProviderInput | IntegrationUpsertWithWhereUniqueWithoutIntegrationProviderInput[]
+    createMany?: IntegrationCreateManyIntegrationProviderInputEnvelope
+    set?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    disconnect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    delete?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    update?: IntegrationUpdateWithWhereUniqueWithoutIntegrationProviderInput | IntegrationUpdateWithWhereUniqueWithoutIntegrationProviderInput[]
+    updateMany?: IntegrationUpdateManyWithWhereWithoutIntegrationProviderInput | IntegrationUpdateManyWithWhereWithoutIntegrationProviderInput[]
+    deleteMany?: IntegrationScalarWhereInput | IntegrationScalarWhereInput[]
+  }
+
+  export type IntegrationUncheckedUpdateManyWithoutIntegrationProviderNestedInput = {
+    create?: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput> | IntegrationCreateWithoutIntegrationProviderInput[] | IntegrationUncheckedCreateWithoutIntegrationProviderInput[]
+    connectOrCreate?: IntegrationCreateOrConnectWithoutIntegrationProviderInput | IntegrationCreateOrConnectWithoutIntegrationProviderInput[]
+    upsert?: IntegrationUpsertWithWhereUniqueWithoutIntegrationProviderInput | IntegrationUpsertWithWhereUniqueWithoutIntegrationProviderInput[]
+    createMany?: IntegrationCreateManyIntegrationProviderInputEnvelope
+    set?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    disconnect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    delete?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    connect?: IntegrationWhereUniqueInput | IntegrationWhereUniqueInput[]
+    update?: IntegrationUpdateWithWhereUniqueWithoutIntegrationProviderInput | IntegrationUpdateWithWhereUniqueWithoutIntegrationProviderInput[]
+    updateMany?: IntegrationUpdateManyWithWhereWithoutIntegrationProviderInput | IntegrationUpdateManyWithWhereWithoutIntegrationProviderInput[]
+    deleteMany?: IntegrationScalarWhereInput | IntegrationScalarWhereInput[]
+  }
+
+  export type IntegrationProviderCreateNestedOneWithoutIntegrationsInput = {
+    create?: XOR<IntegrationProviderCreateWithoutIntegrationsInput, IntegrationProviderUncheckedCreateWithoutIntegrationsInput>
+    connectOrCreate?: IntegrationProviderCreateOrConnectWithoutIntegrationsInput
+    connect?: IntegrationProviderWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutIntegrationsInput = {
+    create?: XOR<UserCreateWithoutIntegrationsInput, UserUncheckedCreateWithoutIntegrationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutIntegrationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type DestinationCalendarCreateNestedManyWithoutIntegrationInput = {
+    create?: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput> | DestinationCalendarCreateWithoutIntegrationInput[] | DestinationCalendarUncheckedCreateWithoutIntegrationInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutIntegrationInput | DestinationCalendarCreateOrConnectWithoutIntegrationInput[]
+    createMany?: DestinationCalendarCreateManyIntegrationInputEnvelope
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+  }
+
+  export type DestinationCalendarUncheckedCreateNestedManyWithoutIntegrationInput = {
+    create?: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput> | DestinationCalendarCreateWithoutIntegrationInput[] | DestinationCalendarUncheckedCreateWithoutIntegrationInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutIntegrationInput | DestinationCalendarCreateOrConnectWithoutIntegrationInput[]
+    createMany?: DestinationCalendarCreateManyIntegrationInputEnvelope
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type IntegrationProviderUpdateOneRequiredWithoutIntegrationsNestedInput = {
+    create?: XOR<IntegrationProviderCreateWithoutIntegrationsInput, IntegrationProviderUncheckedCreateWithoutIntegrationsInput>
+    connectOrCreate?: IntegrationProviderCreateOrConnectWithoutIntegrationsInput
+    upsert?: IntegrationProviderUpsertWithoutIntegrationsInput
+    connect?: IntegrationProviderWhereUniqueInput
+    update?: XOR<XOR<IntegrationProviderUpdateToOneWithWhereWithoutIntegrationsInput, IntegrationProviderUpdateWithoutIntegrationsInput>, IntegrationProviderUncheckedUpdateWithoutIntegrationsInput>
   }
 
   export type UserUpdateOneRequiredWithoutIntegrationsNestedInput = {
@@ -7222,6 +10426,34 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutIntegrationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutIntegrationsInput, UserUpdateWithoutIntegrationsInput>, UserUncheckedUpdateWithoutIntegrationsInput>
+  }
+
+  export type DestinationCalendarUpdateManyWithoutIntegrationNestedInput = {
+    create?: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput> | DestinationCalendarCreateWithoutIntegrationInput[] | DestinationCalendarUncheckedCreateWithoutIntegrationInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutIntegrationInput | DestinationCalendarCreateOrConnectWithoutIntegrationInput[]
+    upsert?: DestinationCalendarUpsertWithWhereUniqueWithoutIntegrationInput | DestinationCalendarUpsertWithWhereUniqueWithoutIntegrationInput[]
+    createMany?: DestinationCalendarCreateManyIntegrationInputEnvelope
+    set?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    disconnect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    delete?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    update?: DestinationCalendarUpdateWithWhereUniqueWithoutIntegrationInput | DestinationCalendarUpdateWithWhereUniqueWithoutIntegrationInput[]
+    updateMany?: DestinationCalendarUpdateManyWithWhereWithoutIntegrationInput | DestinationCalendarUpdateManyWithWhereWithoutIntegrationInput[]
+    deleteMany?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
+  }
+
+  export type DestinationCalendarUncheckedUpdateManyWithoutIntegrationNestedInput = {
+    create?: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput> | DestinationCalendarCreateWithoutIntegrationInput[] | DestinationCalendarUncheckedCreateWithoutIntegrationInput[]
+    connectOrCreate?: DestinationCalendarCreateOrConnectWithoutIntegrationInput | DestinationCalendarCreateOrConnectWithoutIntegrationInput[]
+    upsert?: DestinationCalendarUpsertWithWhereUniqueWithoutIntegrationInput | DestinationCalendarUpsertWithWhereUniqueWithoutIntegrationInput[]
+    createMany?: DestinationCalendarCreateManyIntegrationInputEnvelope
+    set?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    disconnect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    delete?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    connect?: DestinationCalendarWhereUniqueInput | DestinationCalendarWhereUniqueInput[]
+    update?: DestinationCalendarUpdateWithWhereUniqueWithoutIntegrationInput | DestinationCalendarUpdateWithWhereUniqueWithoutIntegrationInput[]
+    updateMany?: DestinationCalendarUpdateManyWithWhereWithoutIntegrationInput | DestinationCalendarUpdateManyWithWhereWithoutIntegrationInput[]
+    deleteMany?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
   }
 
   export type UserPersonaCreatedefaultIntegrationTypesInput = {
@@ -7329,10 +10561,6 @@ export namespace Prisma {
     connect?: UserPersonaWhereUniqueInput
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserUpdateOneRequiredWithoutOnboardingNestedInput = {
     create?: XOR<UserCreateWithoutOnboardingInput, UserUncheckedCreateWithoutOnboardingInput>
     connectOrCreate?: UserCreateOrConnectWithoutOnboardingInput
@@ -7349,6 +10577,34 @@ export namespace Prisma {
     delete?: UserPersonaWhereInput | boolean
     connect?: UserPersonaWhereUniqueInput
     update?: XOR<XOR<UserPersonaUpdateToOneWithWhereWithoutOnboardingsWithThisInitialPersonaInput, UserPersonaUpdateWithoutOnboardingsWithThisInitialPersonaInput>, UserPersonaUncheckedUpdateWithoutOnboardingsWithThisInitialPersonaInput>
+  }
+
+  export type UserCreateNestedOneWithoutDestinationCalendarsInput = {
+    create?: XOR<UserCreateWithoutDestinationCalendarsInput, UserUncheckedCreateWithoutDestinationCalendarsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDestinationCalendarsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type IntegrationCreateNestedOneWithoutDestinationCalendarsInput = {
+    create?: XOR<IntegrationCreateWithoutDestinationCalendarsInput, IntegrationUncheckedCreateWithoutDestinationCalendarsInput>
+    connectOrCreate?: IntegrationCreateOrConnectWithoutDestinationCalendarsInput
+    connect?: IntegrationWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutDestinationCalendarsNestedInput = {
+    create?: XOR<UserCreateWithoutDestinationCalendarsInput, UserUncheckedCreateWithoutDestinationCalendarsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDestinationCalendarsInput
+    upsert?: UserUpsertWithoutDestinationCalendarsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDestinationCalendarsInput, UserUpdateWithoutDestinationCalendarsInput>, UserUncheckedUpdateWithoutDestinationCalendarsInput>
+  }
+
+  export type IntegrationUpdateOneRequiredWithoutDestinationCalendarsNestedInput = {
+    create?: XOR<IntegrationCreateWithoutDestinationCalendarsInput, IntegrationUncheckedCreateWithoutDestinationCalendarsInput>
+    connectOrCreate?: IntegrationCreateOrConnectWithoutDestinationCalendarsInput
+    upsert?: IntegrationUpsertWithoutDestinationCalendarsInput
+    connect?: IntegrationWhereUniqueInput
+    update?: XOR<XOR<IntegrationUpdateToOneWithWhereWithoutDestinationCalendarsInput, IntegrationUpdateWithoutDestinationCalendarsInput>, IntegrationUncheckedUpdateWithoutDestinationCalendarsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7484,15 +10740,9 @@ export namespace Prisma {
     not?: NestedEnumIntegrationTypeFilter<$PrismaModel> | $Enums.IntegrationType
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedEnumIntegrationTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -7503,6 +10753,25 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumIntegrationTypeFilter<$PrismaModel>
     _max?: NestedEnumIntegrationTypeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7542,22 +10811,9 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type IntegrationCreateWithoutUserInput = {
     id?: string
-    type: $Enums.IntegrationType
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
@@ -7565,18 +10821,22 @@ export namespace Prisma {
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    integrationProvider: IntegrationProviderCreateNestedOneWithoutIntegrationsInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutIntegrationInput
   }
 
   export type IntegrationUncheckedCreateWithoutUserInput = {
     id?: string
-    type: $Enums.IntegrationType
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
     externalId?: string | null
+    integrationProviderId: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutIntegrationInput
   }
 
   export type IntegrationCreateOrConnectWithoutUserInput = {
@@ -7641,6 +10901,38 @@ export namespace Prisma {
     create: XOR<UserPersonaCreateWithoutUsersInput, UserPersonaUncheckedCreateWithoutUsersInput>
   }
 
+  export type DestinationCalendarCreateWithoutUserInput = {
+    id?: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    integration: IntegrationCreateNestedOneWithoutDestinationCalendarsInput
+  }
+
+  export type DestinationCalendarUncheckedCreateWithoutUserInput = {
+    id?: string
+    integrationId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarCreateOrConnectWithoutUserInput = {
+    where: DestinationCalendarWhereUniqueInput
+    create: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput>
+  }
+
+  export type DestinationCalendarCreateManyUserInputEnvelope = {
+    data: DestinationCalendarCreateManyUserInput | DestinationCalendarCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type IntegrationUpsertWithWhereUniqueWithoutUserInput = {
     where: IntegrationWhereUniqueInput
     update: XOR<IntegrationUpdateWithoutUserInput, IntegrationUncheckedUpdateWithoutUserInput>
@@ -7663,11 +10955,12 @@ export namespace Prisma {
     NOT?: IntegrationScalarWhereInput | IntegrationScalarWhereInput[]
     id?: StringFilter<"Integration"> | string
     userId?: StringFilter<"Integration"> | string
-    type?: EnumIntegrationTypeFilter<"Integration"> | $Enums.IntegrationType
+    name?: StringNullableFilter<"Integration"> | string | null
     accessToken?: StringFilter<"Integration"> | string
     refreshToken?: StringNullableFilter<"Integration"> | string | null
     lastSync?: DateTimeNullableFilter<"Integration"> | Date | string | null
     externalId?: StringNullableFilter<"Integration"> | string | null
+    integrationProviderId?: StringFilter<"Integration"> | string
     metadata?: JsonNullableFilter<"Integration">
     createdAt?: DateTimeFilter<"Integration"> | Date | string
     updatedAt?: DateTimeFilter<"Integration"> | Date | string
@@ -7737,6 +11030,122 @@ export namespace Prisma {
     onboardingsWithThisInitialPersona?: UserOnboardingUncheckedUpdateManyWithoutInitialPersonaNestedInput
   }
 
+  export type DestinationCalendarUpsertWithWhereUniqueWithoutUserInput = {
+    where: DestinationCalendarWhereUniqueInput
+    update: XOR<DestinationCalendarUpdateWithoutUserInput, DestinationCalendarUncheckedUpdateWithoutUserInput>
+    create: XOR<DestinationCalendarCreateWithoutUserInput, DestinationCalendarUncheckedCreateWithoutUserInput>
+  }
+
+  export type DestinationCalendarUpdateWithWhereUniqueWithoutUserInput = {
+    where: DestinationCalendarWhereUniqueInput
+    data: XOR<DestinationCalendarUpdateWithoutUserInput, DestinationCalendarUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DestinationCalendarUpdateManyWithWhereWithoutUserInput = {
+    where: DestinationCalendarScalarWhereInput
+    data: XOR<DestinationCalendarUpdateManyMutationInput, DestinationCalendarUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DestinationCalendarScalarWhereInput = {
+    AND?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
+    OR?: DestinationCalendarScalarWhereInput[]
+    NOT?: DestinationCalendarScalarWhereInput | DestinationCalendarScalarWhereInput[]
+    id?: StringFilter<"DestinationCalendar"> | string
+    userId?: StringFilter<"DestinationCalendar"> | string
+    integrationId?: StringFilter<"DestinationCalendar"> | string
+    externalId?: StringFilter<"DestinationCalendar"> | string
+    name?: StringFilter<"DestinationCalendar"> | string
+    isPrimary?: BoolFilter<"DestinationCalendar"> | boolean
+    isReadOnly?: BoolFilter<"DestinationCalendar"> | boolean
+    createdAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+    updatedAt?: DateTimeFilter<"DestinationCalendar"> | Date | string
+  }
+
+  export type IntegrationCreateWithoutIntegrationProviderInput = {
+    id?: string
+    name?: string | null
+    accessToken: string
+    refreshToken?: string | null
+    lastSync?: Date | string | null
+    externalId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutIntegrationsInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutIntegrationInput
+  }
+
+  export type IntegrationUncheckedCreateWithoutIntegrationProviderInput = {
+    id?: string
+    userId: string
+    name?: string | null
+    accessToken: string
+    refreshToken?: string | null
+    lastSync?: Date | string | null
+    externalId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutIntegrationInput
+  }
+
+  export type IntegrationCreateOrConnectWithoutIntegrationProviderInput = {
+    where: IntegrationWhereUniqueInput
+    create: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput>
+  }
+
+  export type IntegrationCreateManyIntegrationProviderInputEnvelope = {
+    data: IntegrationCreateManyIntegrationProviderInput | IntegrationCreateManyIntegrationProviderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type IntegrationUpsertWithWhereUniqueWithoutIntegrationProviderInput = {
+    where: IntegrationWhereUniqueInput
+    update: XOR<IntegrationUpdateWithoutIntegrationProviderInput, IntegrationUncheckedUpdateWithoutIntegrationProviderInput>
+    create: XOR<IntegrationCreateWithoutIntegrationProviderInput, IntegrationUncheckedCreateWithoutIntegrationProviderInput>
+  }
+
+  export type IntegrationUpdateWithWhereUniqueWithoutIntegrationProviderInput = {
+    where: IntegrationWhereUniqueInput
+    data: XOR<IntegrationUpdateWithoutIntegrationProviderInput, IntegrationUncheckedUpdateWithoutIntegrationProviderInput>
+  }
+
+  export type IntegrationUpdateManyWithWhereWithoutIntegrationProviderInput = {
+    where: IntegrationScalarWhereInput
+    data: XOR<IntegrationUpdateManyMutationInput, IntegrationUncheckedUpdateManyWithoutIntegrationProviderInput>
+  }
+
+  export type IntegrationProviderCreateWithoutIntegrationsInput = {
+    id?: string
+    providerKey: string
+    displayName: string
+    description?: string | null
+    logoUrl?: string | null
+    type: $Enums.IntegrationType
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationProviderUncheckedCreateWithoutIntegrationsInput = {
+    id?: string
+    providerKey: string
+    displayName: string
+    description?: string | null
+    logoUrl?: string | null
+    type: $Enums.IntegrationType
+    isEnabled?: boolean
+    isBeta?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationProviderCreateOrConnectWithoutIntegrationsInput = {
+    where: IntegrationProviderWhereUniqueInput
+    create: XOR<IntegrationProviderCreateWithoutIntegrationsInput, IntegrationProviderUncheckedCreateWithoutIntegrationsInput>
+  }
+
   export type UserCreateWithoutIntegrationsInput = {
     id?: string
     email: string
@@ -7750,6 +11159,7 @@ export namespace Prisma {
     role?: $Enums.Role
     onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
     chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutIntegrationsInput = {
@@ -7765,11 +11175,81 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.Role
     onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutIntegrationsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutIntegrationsInput, UserUncheckedCreateWithoutIntegrationsInput>
+  }
+
+  export type DestinationCalendarCreateWithoutIntegrationInput = {
+    id?: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutDestinationCalendarsInput
+  }
+
+  export type DestinationCalendarUncheckedCreateWithoutIntegrationInput = {
+    id?: string
+    userId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarCreateOrConnectWithoutIntegrationInput = {
+    where: DestinationCalendarWhereUniqueInput
+    create: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput>
+  }
+
+  export type DestinationCalendarCreateManyIntegrationInputEnvelope = {
+    data: DestinationCalendarCreateManyIntegrationInput | DestinationCalendarCreateManyIntegrationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type IntegrationProviderUpsertWithoutIntegrationsInput = {
+    update: XOR<IntegrationProviderUpdateWithoutIntegrationsInput, IntegrationProviderUncheckedUpdateWithoutIntegrationsInput>
+    create: XOR<IntegrationProviderCreateWithoutIntegrationsInput, IntegrationProviderUncheckedCreateWithoutIntegrationsInput>
+    where?: IntegrationProviderWhereInput
+  }
+
+  export type IntegrationProviderUpdateToOneWithWhereWithoutIntegrationsInput = {
+    where?: IntegrationProviderWhereInput
+    data: XOR<IntegrationProviderUpdateWithoutIntegrationsInput, IntegrationProviderUncheckedUpdateWithoutIntegrationsInput>
+  }
+
+  export type IntegrationProviderUpdateWithoutIntegrationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationProviderUncheckedUpdateWithoutIntegrationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    providerKey?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isBeta?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUpsertWithoutIntegrationsInput = {
@@ -7796,6 +11276,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
     chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutIntegrationsInput = {
@@ -7811,6 +11292,23 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type DestinationCalendarUpsertWithWhereUniqueWithoutIntegrationInput = {
+    where: DestinationCalendarWhereUniqueInput
+    update: XOR<DestinationCalendarUpdateWithoutIntegrationInput, DestinationCalendarUncheckedUpdateWithoutIntegrationInput>
+    create: XOR<DestinationCalendarCreateWithoutIntegrationInput, DestinationCalendarUncheckedCreateWithoutIntegrationInput>
+  }
+
+  export type DestinationCalendarUpdateWithWhereUniqueWithoutIntegrationInput = {
+    where: DestinationCalendarWhereUniqueInput
+    data: XOR<DestinationCalendarUpdateWithoutIntegrationInput, DestinationCalendarUncheckedUpdateWithoutIntegrationInput>
+  }
+
+  export type DestinationCalendarUpdateManyWithWhereWithoutIntegrationInput = {
+    where: DestinationCalendarScalarWhereInput
+    data: XOR<DestinationCalendarUpdateManyMutationInput, DestinationCalendarUncheckedUpdateManyWithoutIntegrationInput>
   }
 
   export type UserCreateWithoutChosenPersonaInput = {
@@ -7826,6 +11324,7 @@ export namespace Prisma {
     role?: $Enums.Role
     integrations?: IntegrationCreateNestedManyWithoutUserInput
     onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChosenPersonaInput = {
@@ -7841,6 +11340,7 @@ export namespace Prisma {
     role?: $Enums.Role
     integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
     onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChosenPersonaInput = {
@@ -7962,6 +11462,7 @@ export namespace Prisma {
     role?: $Enums.Role
     integrations?: IntegrationCreateNestedManyWithoutUserInput
     chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
+    destinationCalendars?: DestinationCalendarCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOnboardingInput = {
@@ -7977,6 +11478,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: $Enums.Role
     integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
+    destinationCalendars?: DestinationCalendarUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOnboardingInput = {
@@ -8033,6 +11535,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUpdateManyWithoutUserNestedInput
     chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOnboardingInput = {
@@ -8048,6 +11551,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserPersonaUpsertWithoutOnboardingsWithThisInitialPersonaInput = {
@@ -8081,9 +11585,260 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutChosenPersonaNestedInput
   }
 
+  export type UserCreateWithoutDestinationCalendarsInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingCreateNestedOneWithoutUserInput
+    chosenPersona?: UserPersonaCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutDestinationCalendarsInput = {
+    id?: string
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    picture?: string | null
+    googleId?: string | null
+    chosenPersonaId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    integrations?: IntegrationUncheckedCreateNestedManyWithoutUserInput
+    onboarding?: UserOnboardingUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDestinationCalendarsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDestinationCalendarsInput, UserUncheckedCreateWithoutDestinationCalendarsInput>
+  }
+
+  export type IntegrationCreateWithoutDestinationCalendarsInput = {
+    id?: string
+    name?: string | null
+    accessToken: string
+    refreshToken?: string | null
+    lastSync?: Date | string | null
+    externalId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    integrationProvider: IntegrationProviderCreateNestedOneWithoutIntegrationsInput
+    user: UserCreateNestedOneWithoutIntegrationsInput
+  }
+
+  export type IntegrationUncheckedCreateWithoutDestinationCalendarsInput = {
+    id?: string
+    userId: string
+    name?: string | null
+    accessToken: string
+    refreshToken?: string | null
+    lastSync?: Date | string | null
+    externalId?: string | null
+    integrationProviderId: string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationCreateOrConnectWithoutDestinationCalendarsInput = {
+    where: IntegrationWhereUniqueInput
+    create: XOR<IntegrationCreateWithoutDestinationCalendarsInput, IntegrationUncheckedCreateWithoutDestinationCalendarsInput>
+  }
+
+  export type UserUpsertWithoutDestinationCalendarsInput = {
+    update: XOR<UserUpdateWithoutDestinationCalendarsInput, UserUncheckedUpdateWithoutDestinationCalendarsInput>
+    create: XOR<UserCreateWithoutDestinationCalendarsInput, UserUncheckedCreateWithoutDestinationCalendarsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDestinationCalendarsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDestinationCalendarsInput, UserUncheckedUpdateWithoutDestinationCalendarsInput>
+  }
+
+  export type UserUpdateWithoutDestinationCalendarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
+    chosenPersona?: UserPersonaUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDestinationCalendarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    chosenPersonaId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
+    onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type IntegrationUpsertWithoutDestinationCalendarsInput = {
+    update: XOR<IntegrationUpdateWithoutDestinationCalendarsInput, IntegrationUncheckedUpdateWithoutDestinationCalendarsInput>
+    create: XOR<IntegrationCreateWithoutDestinationCalendarsInput, IntegrationUncheckedCreateWithoutDestinationCalendarsInput>
+    where?: IntegrationWhereInput
+  }
+
+  export type IntegrationUpdateToOneWithWhereWithoutDestinationCalendarsInput = {
+    where?: IntegrationWhereInput
+    data: XOR<IntegrationUpdateWithoutDestinationCalendarsInput, IntegrationUncheckedUpdateWithoutDestinationCalendarsInput>
+  }
+
+  export type IntegrationUpdateWithoutDestinationCalendarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integrationProvider?: IntegrationProviderUpdateOneRequiredWithoutIntegrationsNestedInput
+    user?: UserUpdateOneRequiredWithoutIntegrationsNestedInput
+  }
+
+  export type IntegrationUncheckedUpdateWithoutDestinationCalendarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    integrationProviderId?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntegrationCreateManyUserInput = {
     id?: string
-    type: $Enums.IntegrationType
+    name?: string | null
+    accessToken: string
+    refreshToken?: string | null
+    lastSync?: Date | string | null
+    externalId?: string | null
+    integrationProviderId: string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarCreateManyUserInput = {
+    id?: string
+    integrationId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integrationProvider?: IntegrationProviderUpdateOneRequiredWithoutIntegrationsNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutIntegrationNestedInput
+  }
+
+  export type IntegrationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    integrationProviderId?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutIntegrationNestedInput
+  }
+
+  export type IntegrationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    integrationProviderId?: StringFieldUpdateOperationsInput | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DestinationCalendarUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    integration?: IntegrationUpdateOneRequiredWithoutDestinationCalendarsNestedInput
+  }
+
+  export type DestinationCalendarUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    integrationId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DestinationCalendarUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    integrationId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationCreateManyIntegrationProviderInput = {
+    id?: string
+    userId: string
+    name?: string | null
     accessToken: string
     refreshToken?: string | null
     lastSync?: Date | string | null
@@ -8093,9 +11848,38 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IntegrationUpdateWithoutUserInput = {
+  export type IntegrationUpdateWithoutIntegrationProviderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutIntegrationsNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutIntegrationNestedInput
+  }
+
+  export type IntegrationUncheckedUpdateWithoutIntegrationProviderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    externalId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutIntegrationNestedInput
+  }
+
+  export type IntegrationUncheckedUpdateManyWithoutIntegrationProviderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8105,26 +11889,46 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IntegrationUncheckedUpdateWithoutUserInput = {
+  export type DestinationCalendarCreateManyIntegrationInput = {
+    id?: string
+    userId: string
+    externalId: string
+    name: string
+    isPrimary?: boolean
+    isReadOnly?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationCalendarUpdateWithoutIntegrationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
-    accessToken?: StringFieldUpdateOperationsInput | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    externalId?: NullableStringFieldUpdateOperationsInput | string | null
-    metadata?: NullableJsonNullValueInput | InputJsonValue
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutDestinationCalendarsNestedInput
+  }
+
+  export type DestinationCalendarUncheckedUpdateWithoutIntegrationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IntegrationUncheckedUpdateManyWithoutUserInput = {
+  export type DestinationCalendarUncheckedUpdateManyWithoutIntegrationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumIntegrationTypeFieldUpdateOperationsInput | $Enums.IntegrationType
-    accessToken?: StringFieldUpdateOperationsInput | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    lastSync?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    externalId?: NullableStringFieldUpdateOperationsInput | string | null
-    metadata?: NullableJsonNullValueInput | InputJsonValue
+    userId?: StringFieldUpdateOperationsInput | string
+    externalId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    isReadOnly?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8166,6 +11970,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUpdateManyWithoutUserNestedInput
     onboarding?: UserOnboardingUpdateOneWithoutUserNestedInput
+    destinationCalendars?: DestinationCalendarUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChosenPersonaInput = {
@@ -8181,6 +11986,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     integrations?: IntegrationUncheckedUpdateManyWithoutUserNestedInput
     onboarding?: UserOnboardingUncheckedUpdateOneWithoutUserNestedInput
+    destinationCalendars?: DestinationCalendarUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutChosenPersonaInput = {

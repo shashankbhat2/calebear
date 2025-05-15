@@ -18,6 +18,7 @@
     "db:restart": "npm run db:down && npm run db:up",
     "prisma:migrate:dev": "pnpm --filter api exec prisma migrate dev",
     "prisma:generate": "pnpm --filter api exec prisma generate",
+    "prisma:reset": "pnpm --filter api exec prisma migrate reset",
     "dev:db:reset": "npm run db:rm-data && npm run db:up && echo \"Waiting for DB to be ready...\" && sleep 5 && npm run prisma:migrate:dev && npm run prisma:generate"
   },
   "devDependencies": {

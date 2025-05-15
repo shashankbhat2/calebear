@@ -134,14 +134,28 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.IntegrationProviderScalarFieldEnum = {
+  id: 'id',
+  providerKey: 'providerKey',
+  displayName: 'displayName',
+  description: 'description',
+  logoUrl: 'logoUrl',
+  type: 'type',
+  isEnabled: 'isEnabled',
+  isBeta: 'isBeta',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.IntegrationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  type: 'type',
+  name: 'name',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   lastSync: 'lastSync',
   externalId: 'externalId',
+  integrationProviderId: 'integrationProviderId',
   metadata: 'metadata',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -164,6 +178,18 @@ exports.Prisma.UserOnboardingScalarFieldEnum = {
   completed: 'completed',
   currentStep: 'currentStep',
   onboardingData: 'onboardingData',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DestinationCalendarScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  integrationId: 'integrationId',
+  externalId: 'externalId',
+  name: 'name',
+  isPrimary: 'isPrimary',
+  isReadOnly: 'isReadOnly',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -200,14 +226,18 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.IntegrationType = exports.$Enums.IntegrationType = {
-  GOOGLE_CALENDAR: 'GOOGLE_CALENDAR'
+  CALENDAR: 'CALENDAR',
+  CONFERENCING: 'CONFERENCING',
+  PAYMENT: 'PAYMENT'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
+  IntegrationProvider: 'IntegrationProvider',
   Integration: 'Integration',
   UserPersona: 'UserPersona',
-  UserOnboarding: 'UserOnboarding'
+  UserOnboarding: 'UserOnboarding',
+  DestinationCalendar: 'DestinationCalendar'
 };
 
 /**

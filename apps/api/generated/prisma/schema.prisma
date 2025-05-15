@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Prisma schema file. Docs: https://pris.ly/d/prisma-schema
+//
+// For faster queries or serverless scaling, try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -15,8 +13,9 @@ datasource db {
 }
 
 enum IntegrationType {
-  GOOGLE_CALENDAR
-  // OUTLOOK_CALENDAR // Future integrations
+  CALENDAR
+  CONFERENCING
+  PAYMENT
 }
 
 enum Role {
@@ -28,11 +27,11 @@ enum Role {
 model User {
   id        String  @id @default(cuid())
   email     String  @unique
-  password  String? // Optional because of OAuth, or if email verification is a separate step
+  password  String? // Optional: for OAuth or separate email verification
   firstName String?
   lastName  String?
-  picture   String? // URL to profile picture
-  googleId  String? @unique // To store Google user ID
+  picture   String? // Profile picture URL
+  googleId  String? @unique // Google user ID
 
   integrations Integration[] // Relation to Integrations
   onboarding   UserOnboarding? // Relation to UserOnboarding
@@ -43,37 +42,60 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  role Role @default(USER)
+  role                 Role                  @default(USER)
+  destinationCalendars DestinationCalendar[] // Relation to DestinationCalendar
 
-  @@map("users") // Optional: specify table name in the database
+  @@map("users") // Table name in DB
 }
 
-model Integration {
-  id           String          @id @default(cuid())
-  userId       String
-  type         IntegrationType
-  accessToken  String          @db.Text // Access tokens can be long
-  refreshToken String?         @db.Text // Refresh tokens can also be long and are optional for some OAuth flows
-  lastSync     DateTime?
-  externalId   String?         @unique // e.g., Google Calendar ID, subscription ID for webhooks
-  metadata     Json? // For any other integration-specific data
+model IntegrationProvider {
+  id          String          @id @default(cuid())
+  providerKey String          @unique // e.g. "google_calendar", "zoom_conferencing"
+  displayName String // e.g. "Google Calendar", "Zoom"
+  description String?
+  logoUrl     String?
+  type        IntegrationType // CALENDAR, CONFERENCING
+  isEnabled   Boolean         @default(true)
+  isBeta      Boolean         @default(false) // Mark as beta/preview
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  integrations Integration[] // Integration instances using this provider
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId, type]) // A user can have only one integration of a certain type
+  @@map("integration_providers")
+}
+
+model Integration {
+  id                    String              @id @default(cuid())
+  userId                String
+  name                  String?
+  accessToken           String              @db.Text
+  refreshToken          String?             @db.Text
+  lastSync              DateTime?
+  externalId            String?
+  integrationProviderId String
+  integrationProvider   IntegrationProvider @relation(fields: [integrationProviderId], references: [id])
+
+  user                 User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  metadata             Json?
+  destinationCalendars DestinationCalendar[] // Relation to DestinationCalendar
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  @@unique([userId, integrationProviderId, externalId], name: "user_provider_external_id_key") // User can link a specific external resource once per provider
   @@index([userId])
+  @@index([integrationProviderId])
+  @@map("integrations")
 }
 
 model UserPersona {
   id                                String            @id @default(cuid())
   name                              String            @unique
   description                       String?
-  defaultIntegrationTypes           IntegrationType[] // List of default integrations for this persona
-  users                             User[] // Users who have chosen this persona
-  onboardingsWithThisInitialPersona UserOnboarding[]  @relation("InitialPersonaForOnboarding") // Onboardings that started with this persona
+  defaultIntegrationTypes           IntegrationType[] // Default integrations for this persona
+  users                             User[] // Users with this persona
+  onboardingsWithThisInitialPersona UserOnboarding[]  @relation("InitialPersonaForOnboarding") // Onboardings started with this persona
   createdAt                         DateTime          @default(now())
   updatedAt                         DateTime          @updatedAt
 
@@ -82,20 +104,41 @@ model UserPersona {
 
 model UserOnboarding {
   id           String @id @default(cuid())
-  userId       String @unique // Enforces 1:1 relationship with User
+  userId       String @unique // 1:1 with User
   user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  onboardingId String // This might be a specific onboarding flow ID if you have multiple
+  onboardingId String // Onboarding flow ID
 
   initialPersonaId String?      @map("initial_persona_id")
   initialPersona   UserPersona? @relation("InitialPersonaForOnboarding", fields: [initialPersonaId], references: [id], onDelete: SetNull)
 
   completed      Boolean @default(false)
   currentStep    String?
-  onboardingData Json? // Flexible field for onboarding-specific data
+  onboardingData Json? // Onboarding-specific data
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([initialPersonaId])
   @@map("user_onboardings")
+}
+
+model DestinationCalendar {
+  id            String  @id @default(cuid())
+  userId        String
+  integrationId String
+  externalId    String // External ID of the calendar (e.g., Google Calendar ID)
+  name          String // User-friendly name for the calendar
+  isPrimary     Boolean @default(false)
+  isReadOnly    Boolean @default(false) // Whether the calendar is read-only
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  integration Integration @relation(fields: [integrationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, integrationId, externalId], name: "user_integration_external_id_key")
+  @@index([userId])
+  @@index([integrationId])
+  @@map("destination_calendars")
 }
