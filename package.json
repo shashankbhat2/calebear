@@ -1,4 +1,5 @@
 {
+  "name": "@cleverbook/root",
   "private": true,
   "workspaces": ["apps/*"],
   "scripts": {

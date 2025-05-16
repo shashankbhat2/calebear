@@ -4,9 +4,9 @@ services:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: clevercal 
-      POSTGRES_PASSWORD: clevercal
-      POSTGRES_DB: clevercal 
+      POSTGRES_USER: cleverbook 
+      POSTGRES_PASSWORD: cleverbook
+      POSTGRES_DB: cleverbook 
     ports:
       - "5432:5432"
     volumes:

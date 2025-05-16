@@ -223,7 +223,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/shashankbhat/Personal/clevercal-core/apps/api/generated/prisma",
+      "value": "/Users/shashankbhat/Personal/cleverbook-core/apps/api/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -237,7 +237,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/shashankbhat/Personal/clevercal-core/apps/api/prisma/schema.prisma",
+    "sourceFilePath": "/Users/shashankbhat/Personal/cleverbook-core/apps/api/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -251,11 +251,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://clevercal:clevercal@localhost:5432/clevercal?schema=public"
+        "value": null
       }
     }
   },
